@@ -12,3 +12,27 @@ function nextGen(cells) {
 		});
 	});
 }
+
+getCell(row, col){
+
+	return (cells[row] && cells[row][col]) ? 1 : 0;
+}
+
+(() => {
+	const startingCells =
+		[
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0]
+		];
+
+	const expectedResult =
+		[
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0]
+		];
+
+	console.log(nextGen(startingCells) === expectedResult);
+
+})();
