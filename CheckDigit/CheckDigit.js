@@ -1,9 +1,10 @@
-function checkDigit(number, index1, index2, digit) {
-	
-	const digitArray = Array.from(number.toString()).map(Number);
-	const slicedArray = digitArray.slice(Math.min(index1, index2), Math.max(index1, index2) + 1); //slice end isnt inclusive
-	return slicedArray.includes(digit);
-};
+function checkDigit(number, index1, index2, digit){
+
+	return Array.from(number.toString())
+		.map(Number)
+		.slice(Math.min(index1, index2), Math.max(index1, index2) + 1)
+		.includes(digit);
+}
 
 console.log(checkDigit(1234567, 1, 0, 1) === true);
 console.log(checkDigit(1234567, 0, 1, 2) === true);
