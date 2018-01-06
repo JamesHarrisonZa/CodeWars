@@ -1,4 +1,8 @@
+'use strict';
+
 function nextGen(cells) {
+
+	const getCell = (cells, row, col) => (cells[row] && cells[row][col]) ? 1 : 0;
 
 	return cells.map((row, r) => {
 		return row.map((isAlive, c) => {
@@ -13,26 +17,77 @@ function nextGen(cells) {
 	});
 }
 
-getCell(row, col){
+// --------------------------------------------------------------------------------------------------------------
+// TESTS
+// --------------------------------------------------------------------------------------------------------------
 
-	return (cells[row] && cells[row][col]) ? 1 : 0;
+function areEqualArrays(arr1, arr2){
+
+	if (arr1.length !== arr2.length) {
+		return false;
+	}
+
+	for (let i=0; i < arr1.length; i++) {
+		for (let j=0; j < arr1[i].length; j++) {
+			
+			if(arr1[i][j] !== arr2[i][j]) {
+				return false;
+			}
+		}
+	}
+	return true;
 }
 
-(() => {
+((desc) => {
 	const startingCells =
 		[
 			[0, 0, 0],
 			[0, 0, 0],
 			[0, 0, 0]
 		];
-
-	const expectedResult =
+	const expected =
 		[
 			[0, 0, 0],
 			[0, 0, 0],
 			[0, 0, 0]
 		];
+	const actual = nextGen(startingCells)
 
-	console.log(nextGen(startingCells) === expectedResult);
+	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
+})('Given a 3x3 grid with all dead cells the next generation should remain all dead');
 
-})();
+((desc) => {
+	const startingCells =
+		[
+			[0, 0, 0],
+			[0, 1, 0],
+			[0, 0, 0]
+		];
+	const expected =
+		[
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0]
+		];
+	const actual = nextGen(startingCells)
+
+	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
+})('Given a 3x3 grid with a single live cell the next generation should kill the lonely cell');
+
+((desc) => {
+	const startingCells =
+		[
+			[0, 0, 0],
+			[1, 1, 1],
+			[0, 0, 0]
+		];
+	const expected =
+		[
+			[0, 1, 0],
+			[0, 1, 0],
+			[0, 1, 0]
+		];
+	const actual = nextGen(startingCells)
+
+	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
+})('Given a 3x3 grid with two dead cells with three live neighbours the next generation should bring two cells to life');
