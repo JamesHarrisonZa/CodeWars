@@ -91,3 +91,21 @@ function areEqualArrays(arr1, arr2){
 
 	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
 })('Given a 3x3 grid with two dead cells with three live neighbours the next generation should bring two cells to life');
+
+((desc) => {
+	const startingCells =
+		[
+			[1, 1, 1],
+			[0, 0, 0],
+			[0, 0, 0]
+		];
+	const expected =
+		[
+			[0, 1, 0],
+			[0, 1, 0],
+			[0, 0, 0]
+		];
+	const actual = nextGen(startingCells)
+
+	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
+})('Given a 3x3 grid with a live cell with two live neighbours the next generation should keep that cell alive');
