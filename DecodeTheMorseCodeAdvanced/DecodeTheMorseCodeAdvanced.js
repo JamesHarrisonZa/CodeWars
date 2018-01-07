@@ -75,3 +75,41 @@ function getEnglishWord(codedWord) {
 	const englishLetters = codedLeters.map(p => { return MORSE_CODE[p] });
 	return englishLetters.join("");
 }
+
+const MORSE_CODE = new Map();
+MORSE_CODE['.-'] = 'A';
+MORSE_CODE['-...'] = 'B';
+MORSE_CODE['-.-.'] = 'C';
+MORSE_CODE['-..'] = 'D';
+MORSE_CODE['.'] = 'E';
+MORSE_CODE['..-.'] = 'F';
+MORSE_CODE['--.'] = 'G';
+MORSE_CODE['....'] = 'H';
+MORSE_CODE['..'] = 'I';
+MORSE_CODE['.---'] = 'J';
+MORSE_CODE['-.-'] = 'K';
+MORSE_CODE['.-..'] = 'L';
+MORSE_CODE['--'] = 'M';
+MORSE_CODE['-.'] = 'N';
+MORSE_CODE['---'] = 'O';
+MORSE_CODE['.--.'] = 'P';
+MORSE_CODE['--.-'] = 'Q';
+MORSE_CODE['.-.'] = 'R';
+MORSE_CODE['...'] = 'S';
+MORSE_CODE['-'] = 'T';
+MORSE_CODE['..-'] = 'U';
+MORSE_CODE['...-'] = 'V';
+MORSE_CODE['.--'] = 'W';
+MORSE_CODE['-..-'] = 'X';
+MORSE_CODE['-.--'] = 'Y';
+MORSE_CODE['--..'] = 'Z';
+
+
+// --------------------------------------------------------------------------------------------------------------
+// TESTS
+// --------------------------------------------------------------------------------------------------------------
+
+const expected = 'HEY JUDE';
+const actual = decodeMorse(decodeBits('1100110011001100000011000000111111001100111111001111110000000000000011001111110011111100111111000000110011001111110000001111110011001100000011'));
+
+console.log(expected === actual);
