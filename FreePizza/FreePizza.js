@@ -12,28 +12,44 @@ function pizzaRewards(customers, minOrders, minPrice) {
 // TESTS
 // --------------------------------------------------------------------------------------------------------------
 
-function areEqualArrays(arr1, arr2){
+function areEqualArrays(arr1, arr2) {
 
 	if (arr1.length !== arr2.length) {
 		return false;
 	}
 
-	for (let i=0; i < arr1.length; i++) {
-		if(arr1[i] !== arr2[i]) {
+	for (let i = 0; i < arr1.length; i++) {
+		if (arr1[i] !== arr2[i]) {
 			return false;
 		}
 	}
 	return true;
 }
 
-const minOrders = 5
-const minPrice = 20
-const customers = {
-	'John Doe': [22, 30, 11, 17, 15, 52, 27, 12], // Only has three orders above 20$, so no pizza
-	'Jane Doe': [5, 17, 30, 33, 40, 22, 26, 10, 11, 45] // Has six orders above 20$, which means FREE PIZZA!
-}
+((desc) => {
+	const minOrders = 5
+	const minPrice = 20
+	const customers = {
+		'John Doe': [22, 30, 11, 17, 15, 52, 27, 12], // Only has three orders above 20$, so no pizza
+		'Jane Doe': [5, 17, 30, 33, 40, 22, 26, 10, 11, 45] // Has six orders above 20$, which means FREE PIZZA!
+	}
 
-const expected = ['Jane Doe'];
-const actual = pizzaRewards(customers, minOrders, minPrice);
+	const expected = ['Jane Doe'];
+	const actual = pizzaRewards(customers, minOrders, minPrice);
 
-console.log(areEqualArrays(expected, actual));
+	console.log(`${desc}: ${areEqualArrays(expected, actual)}`);
+})('Jane Doe should get FREE PIZZA!!');
+
+((desc) => {
+	const minOrders = 2
+	const minPrice = 50
+	const customers = {
+		'Joey Bonzo': [22, 67, 53, 29], // Has two orders above 50$, which means FREE PIZZA!
+		'Jennifer Bonzo': [51, 19] // Only has one order above 50$, so no pizza
+	}
+
+	const expected = ['Joey Bonzo'];
+	const actual = pizzaRewards(customers, minOrders, minPrice);
+
+	console.log(`${desc}: ${areEqualArrays(expected, actual)}`);
+})('Joey Bonzo should get FREE PIZZA!!');
