@@ -31,12 +31,12 @@ function lastDayIsFriday(initialYear, endYear) {
 	console.log(`${desc}: ${expected === actual}`);
 })('returns 2 when 2017');
 
-// ((desc) => {
-// 	const expected = 1;
-// 	const actual = lastDayIsFriday(1991)
+((desc) => {
+	const expected = 1;
+	const actual = lastDayIsFriday(1991)
 
-// 	console.log(`${desc}: ${expected === actual}`);
-// })('returns 1 when 1991');
+	console.log(`${desc}: ${expected === actual}`);
+})('returns 1 when 1991');
 
 // ((desc) => {
 // 	const expected = 171;
