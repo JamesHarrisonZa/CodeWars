@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * @param {Array<String>} customers
+ * @param {number} minOrders
+ * @param {number} minPrice
+ */
 function pizzaRewards(customers, minOrders, minPrice) {
 
 	return Object.keys(customers)
