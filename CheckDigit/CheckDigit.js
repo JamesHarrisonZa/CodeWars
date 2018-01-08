@@ -1,3 +1,5 @@
+'use strict';
+
 function checkDigit(number, index1, index2, digit){
 
 	return Array.from(number.toString())
