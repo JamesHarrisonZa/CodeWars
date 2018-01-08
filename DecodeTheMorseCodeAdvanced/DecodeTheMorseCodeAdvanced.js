@@ -1,3 +1,5 @@
+'use strict';
+
 function decodeBits(input) {
 
 	const truncatedInput = getTruncatedInput(input);
