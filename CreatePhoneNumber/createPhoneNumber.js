@@ -4,6 +4,10 @@
 const createPhoneNumber = (numbers) => 
 	`(${numbers.slice(0, 3).join('')}) ${numbers.slice(3, 6).join('')}-${numbers.slice(6).join('')}`;
 
+//Another nice solution
+const createPhoneNumber2 = (numbers) => 
+	numbers.reduce((p, c) => p.replace('x', c), "(xxx) xxx-xxxx");
+
 // --------------------------------------------------------------------------------------------------------------
 // TESTS
 // --------------------------------------------------------------------------------------------------------------
