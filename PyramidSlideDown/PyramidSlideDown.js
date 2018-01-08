@@ -1,3 +1,5 @@
+'use strict';
+
 function longestSlideDown(pyramid) {
 	for (let floor = pyramid.length - 1; floor > 0; floor--) //Moving bottom -> top
 	{
