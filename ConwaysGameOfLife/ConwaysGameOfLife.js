@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * @param {Array<Array<number>>} cells
+ */
 function nextGen(cells) {
 
 	const getCell = (cells, row, col) => (cells[row] && cells[row][col]) ? 1 : 0;
