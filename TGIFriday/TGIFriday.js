@@ -1,0 +1,4 @@
+function lastDayIsFriday(initialYear, endYear) {
+
+	
+}
