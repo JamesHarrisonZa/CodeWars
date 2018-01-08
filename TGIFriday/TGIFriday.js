@@ -1,3 +1,9 @@
+'use strict';
+
+/**
+ * @param {number} initialYear
+ * @param {number} endYear
+ */
 function lastDayIsFriday(initialYear, endYear) {
 
 	
