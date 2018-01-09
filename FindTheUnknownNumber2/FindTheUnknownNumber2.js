@@ -1,7 +1,7 @@
 function findUnknowNumber(a, b, c, x, y, z) {
 
 	let n = 1;
-	while (n % a !== x || n % b !== y || n % c !== z) {
+	while (!(n % a === x && n % b === y && n % c === z)) {
 		n++;
 	}
 	return n;
