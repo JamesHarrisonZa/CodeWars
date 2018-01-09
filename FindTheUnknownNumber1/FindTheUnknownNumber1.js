@@ -1,21 +1,8 @@
 function findUnknowNumber(x, y, z) {
 
-	let n = Math.max(x, y, z) > 0 ? Math.max(x, y, z): 1;
-
-	while (!(n % 7 === z && n % 5 === y && n % 3 === x)) {
-
-		if (n % 7 === z && z > 0) {
-			n += z;
-		}
-		else if (n % 5 === y && y > 0) {
-			n += y;
-		}
-		else if (n % 3 === x && x > 0) {
-			n += x;
-		}
-		else {
-			n++;
-		}
+	let n = 1;
+	while (!(n % 3 === x && n % 5 === y && n % 7 === z)) {
+		n++;
 	}
 	return n;
 }
