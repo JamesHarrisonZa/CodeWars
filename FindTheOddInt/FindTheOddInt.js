@@ -1,6 +1,8 @@
 'use strict';
 
-/** @param {Array<number>} arr */
+/** 
+ * @param {Array<number>} arr 
+ */
 function findOdd(arr) {
 	
 	let oddInt;
