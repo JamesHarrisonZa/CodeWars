@@ -1,5 +1,8 @@
 'use strict';
 
+/** 
+* @param {Array<Array<int>>} pyramid
+*/
 function longestSlideDown(pyramid) {
 	for (let floor = pyramid.length - 1; floor > 0; floor--) //Moving bottom -> top
 	{
