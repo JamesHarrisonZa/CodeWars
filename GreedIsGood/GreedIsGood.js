@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * @param {Array<int>} dice 
+ */
 function score(dice) {
 	// Fill me in!
 }
