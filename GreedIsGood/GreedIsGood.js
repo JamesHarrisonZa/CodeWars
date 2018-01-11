@@ -13,8 +13,12 @@ function score(diceRolls) {
 	for (let diceNumber = 1; diceNumber <= 6; diceNumber ++) {
 		const diceNumberRolls = diceRollCounter[diceNumber];
 
-		if (diceNumber === 1 && diceNumberRolls === 1){
-			score += 100;
+		if (diceNumber === 1) {
+			score += 100 * diceNumberRolls;
+		}
+
+		if (diceNumber === 5) {
+			score += 50 * diceNumberRolls;
 		}
 	}
 
@@ -28,6 +32,11 @@ function score(diceRolls) {
 console.log(score([0, 0, 0, 0, 0]) === 0);
 
 console.log(score([0, 0, 0, 0, 1]) === 100);
+console.log(score([0, 0, 0, 1, 1]) === 200);
+//console.log(score([0, 0, 1, 1, 1]) === 1000);
+
+console.log(score([0, 0, 0, 0, 5]) === 50);
+console.log(score([0, 0, 0, 5, 5]) === 100);
 
 // (() => {
 // 	const expected = 0;
