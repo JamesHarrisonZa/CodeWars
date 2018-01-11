@@ -1,39 +1,23 @@
 'use strict';
 
 /**
- * @param {Array<int>} dice 
+ * @param {Array<int>} diceRolls
  */
 function score(diceRolls) {
 
 	let score = 0;
-	const diceRollCounter = new Array(7).fill(0);
+	const diceRollCounter = new Array(7).fill(0).map((diceRoll, index) => {
+		return diceRolls.filter((roll) => roll === index).length;
+	});
 
-	for (const roll of diceRolls) {
-		diceRollCounter[roll] ++;
-	}
-	
-	for (let diceNumber = 1; diceNumber <= diceRollCounter.length; diceNumber++) {
+	for (let diceNumber = 1; diceNumber <= 6; diceNumber ++) {
+		const diceNumberRolls = diceRollCounter[diceNumber];
 
-		if (diceRollCounter[diceNumber] === 0){
-			continue;
-		}
-
-		if (diceRollCounter[diceNumber] % 3 === 0) {
-			let diceScore = (diceRollCounter[diceNumber] / 3) * diceNumber * 100;
-			if (diceNumber === 1){
-				diceScore = diceScore*10;
-			}
-			score += diceScore;
-		}
-		else {
-			if (diceNumber === 1) {
-				score += (diceRollCounter[diceNumber] % 3) * 100;
-			}
-			if (diceNumber === 5) {
-				score += (diceRollCounter[diceNumber] % 3) * 50;
-			}
+		if (diceNumber === 1 && diceNumberRolls === 1){
+			score += 100;
 		}
 	}
+
 	return score;
 }
 
@@ -41,28 +25,37 @@ function score(diceRolls) {
 // TESTS
 // --------------------------------------------------------------------------------------------------------------
 
-(() => {
-	const expected = 0;
-	const actual = score([2, 3, 4, 6, 2]);
+console.log(score([0, 0, 0, 0, 0]) === 0);
 
-	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
-})();
+console.log(score([0, 0, 0, 0, 1]) === 100);
 
-(() => {
-	const expected = 400;
-	const actual = score([4, 4, 4, 3, 3]);
+// (() => {
+// 	const expected = 0;
+// 	const actual = score([2, 3, 4, 6, 2]);
 
-	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
-})();
+// 	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
+// })();
 
-(() => {
-	const expected = 450;
-	const actual = score([2, 4, 4, 5, 4]);
+// (() => {
+// 	const expected = 400;
+// 	const actual = score([4, 4, 4, 3, 3]);
 
-	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
-})();
+// 	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
+// })();
 
-// [3, 3, 3, 3, 3] === 300
+// (() => {
+// 	const expected = 450;
+// 	const actual = score([2, 4, 4, 5, 4]);
+
+// 	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
+// })();
+
+// (() => {
+// 	const expected = 300;
+// 	const actual = score([3, 3, 3, 3, 3]);
+
+// 	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
+// })();
 
 // [1, 1, 1, 1, 3] === 1100
 
