@@ -3,23 +3,53 @@
 */
 function isSolved(board) {
 
-	//check rows
+	const hasThreeAccross = checkThreeAccross(board);
+	if (hasThreeAccross) {
+		return hasThreeAccross;
+	}
+
+	const hasThreeDown = checkThreeDown(board);
+	if (hasThreeDown) {
+		return hasThreeDown;
+	}
+
+	const hasDiagonal = checkDiagonals(board);
+	if (hasDiagonal) {
+		return hasDiagonal;
+	}
+
+	const isDraw = board.every((row) => row.every(col => col !== 0));
+	return isDraw ? 0 : -1;
+}
+
+/**
+* @param {Array<Array>} board
+*/
+const checkThreeAccross = (board) => {
 	for (let row of board) {
 		const hasThreeAccross = row.every((c) => c === row[0]) && row[0] !== 0;
 		if (hasThreeAccross) {
 			return row[0];
 		}
 	}
+};
 
-	//check columns
+/**
+* @param {Array<Array>} board
+*/
+const checkThreeDown = (board) => {
 	for (let c = 0; c < 3; c++) {
 		const hasThreedown = (board[0][c] === board[1][c] && board[1][c] === board[2][c]) && board[0][c] !== 0;
 		if (hasThreedown) {
 			return board[0][c];
 		}
 	}
+};
 
-	//check diagonals
+/**
+* @param {Array<Array>} board
+*/
+const checkDiagonals = (board) => {
 	const hasDiagonalTopLeft = (board[0][0] === board[1][1] && board[1][1] === board[2][2]) && board[0][0] !== 0;
 	const hasDiagonalTopRight = (board[0][2] === board[1][1] && board[1][1] === board[2][0]) && board[0][2] !== 0;
 
@@ -30,11 +60,7 @@ function isSolved(board) {
 	if (hasDiagonalTopRight) {
 		return board[0][2];
 	}
-
-	const isDraw = board.every((row) => row.every(col => col !== 0));
-	return isDraw ? 0 : -1;
-}
-
+};
 
 // --------------------------------------------------------------------------------------------------------------
 // TESTS
