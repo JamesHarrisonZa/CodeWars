@@ -53,30 +53,37 @@ console.log(score([0, 5, 5, 5, 5]) === 550);
 console.log(score([5, 5, 5, 5, 5]) === 600);
 console.log(score([1, 1, 1, 1, 5]) === 1150);
 
-(() => {
+((desc) => {
 	const expected = 0;
 	const actual = score([2, 3, 4, 6, 2]);
 
-	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
-})();
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('given no tripples, ones or fives: should score zero');
 
-(() => {
+((desc) => {
 	const expected = 400;
 	const actual = score([4, 4, 4, 3, 3]);
 
-	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
-})();
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('given tripple fours: should score 400');
 
-(() => {
+((desc) => {
 	const expected = 450;
 	const actual = score([2, 4, 4, 5, 4]);
 
-	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
-})();
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('given tripple fours and a five: should score 450');
 
-(() => {
+((desc) => {
 	const expected = 300;
 	const actual = score([3, 3, 3, 3, 3]);
 
-	console.log(`${actual === expected}, expected: ${expected}, actual: ${actual}`);
-})();
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('given all threes should score 300');
+
+((desc) => {
+	const expected = 1150;
+	const actual = score([1, 1, 1, 1, 5]);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('given all ones should score 1150');
