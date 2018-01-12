@@ -33,7 +33,7 @@ function longestSlideDown(pyramid) {
 	]);
 	const expected = 23;
 
-	console.log(`${desc}: ${expected === actual}`);
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
 
 })('should work for small pyramids');
 
@@ -58,6 +58,6 @@ function longestSlideDown(pyramid) {
 	]);
 	const expected = 1074;
 
-	console.log(`${desc}: ${expected === actual}`);
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
 
 })('should work for medium pyramids');
