@@ -82,8 +82,8 @@ console.log(score([1, 1, 1, 1, 5]) === 1150);
 })('given all threes should score 300');
 
 ((desc) => {
-	const expected = 1150;
-	const actual = score([1, 1, 1, 1, 5]);
+	const expected = 1200;
+	const actual = score([1, 1, 1, 1, 1]);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('given all ones should score 1150');
+})('given all ones should score 1200');
