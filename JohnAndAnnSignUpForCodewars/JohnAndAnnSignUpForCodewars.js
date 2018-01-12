@@ -33,30 +33,30 @@ function areEqualArrays(arr1, arr2) {
 	return true;
 }
 
-(() => {
+((desc) => {
 	const expected = [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6];
 	const actual = john(11);
 
-	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('john');
 
-(() => {
+((desc) => {
 	const expected = [1, 1, 2, 2, 3, 3];
 	const actual = ann(6)
 
-	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('ann');
 
-(() => {
+((desc) => {
 	const expected = 1720;
 	const actual = sumJohn(75)
 
-	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('sumJohn');
 
-(() => {
+((desc) => {
 	const expected = 4070;
 	const actual = sumAnn(115)
 
-	console.log(`${desc}: ${areEqualArrays(actual, expected)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('sumAnn');
