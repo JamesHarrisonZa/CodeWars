@@ -29,19 +29,19 @@ function areEqualArrays(arr1, arr2) {
 	const expected =  [2, 4, 6];
 	const actual = maps([1, 2, 3]);
 
-	console.log(`${desc}: ${areEqualArrays(expected, actual)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Test 1');
 
 ((desc) => {
 	const expected = [8, 2, 2, 2, 8]
 	const actual = maps([4, 1, 1, 1, 4]);
 
-	console.log(`${desc}: ${areEqualArrays(expected, actual)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Test 2');
 
 ((desc) => {
 	const expected = [4, 4, 4, 4, 4, 4];
 	const actual = maps([2, 2, 2, 2, 2, 2]);
 
-	console.log(`${desc}: ${areEqualArrays(expected, actual)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Test 3');
