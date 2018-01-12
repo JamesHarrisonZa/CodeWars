@@ -14,16 +14,16 @@ const createPhoneNumber2 = (numbers) =>
 // TESTS
 // --------------------------------------------------------------------------------------------------------------
 
-(() => {
+((desc) => {
 	const expected = '(123) 456-7890';
 	const actual = createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
 
-	console.log(expected === actual, `expected: ${expected} to equal: ${actual}`);
-})();
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Test 1');
 
-(() => {
+((desc) => {
 	const expected = '(042) 007-0007';
 	const actual = createPhoneNumber([0, 4, 2, 0, 0, 7, 0, 0, 0, 7]);
 
-	console.log(expected === actual, `expected: ${expected} to equal: ${actual}`);
-})();
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Test 2');
