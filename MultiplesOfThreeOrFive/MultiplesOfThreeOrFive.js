@@ -15,9 +15,9 @@ function solution(number) {
 // TESTS
 // --------------------------------------------------------------------------------------------------------------
 
-(() => {
+((desc) => {
 	const expected = 23;
 	const actual = solution(10);
 
-	console.log(`${actual === expected} expected: ${expected}, actual: ${actual}`);
-})();
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('10 should return 23');
