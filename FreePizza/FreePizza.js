@@ -44,7 +44,7 @@ function areEqualArrays(arr1, arr2) {
 	const expected = ['Jane Doe'];
 	const actual = pizzaRewards(customers, minOrders, minPrice);
 
-	console.log(`${desc}: ${areEqualArrays(expected, actual)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Jane Doe should get FREE PIZZA!!');
 
 ((desc) => {
@@ -58,5 +58,5 @@ function areEqualArrays(arr1, arr2) {
 	const expected = ['Joey Bonzo'];
 	const actual = pizzaRewards(customers, minOrders, minPrice);
 
-	console.log(`${desc}: ${areEqualArrays(expected, actual)}`);
+	console.log(`${areEqualArrays(expected, actual)}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Joey Bonzo should get FREE PIZZA!!');
