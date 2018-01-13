@@ -5,27 +5,14 @@
  */
 function isMerge(wordToMerge, word1, word2) {
 	
-	let word1Index = 0;
-	let word2Index = 0;
-
-	for (let i = 0; i < wordToMerge.length; i++) {
-		if (word1[word1Index] === wordToMerge[i]) {
-			word1Index++;
-			continue;
-		}
-		else if (word2[word2Index] === wordToMerge[i]) {
-			word2Index++;
-			continue;
-		}
-		else {
-			return false;
-		}
+	if (wordToMerge.length !== word1.length + word2.length) {
+		return false;
 	}
-
-	if (word1Index === word1.length && word2Index === word2.length) {
+	else if (wordToMerge.length === 0) {
 		return true;
 	}
-	return false;
+	return (word1[0] === wordToMerge[0] && isMerge(wordToMerge.slice(1), word1.slice(1), word2)) ||
+		(word2[0] === wordToMerge[0] && isMerge(wordToMerge.slice(1), word1, word2.slice(1)));
 }
 
 // --------------------------------------------------------------------------------------------------------------
@@ -67,9 +54,9 @@ function isMerge(wordToMerge, word1, word2) {
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Given extra characters should return false');
 
-// ((desc) => {
-// 	const expected = true;
-// 	const actual = isMerge('Bananas from Bahamas', 'Bahas', 'Bananas from am');
+((desc) => {
+	const expected = true;
+	const actual = isMerge('Bananas from Bahamas', 'Bahas', 'Bananas from am');
 
-// 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Can handle bananas');
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Can handle bananas');
