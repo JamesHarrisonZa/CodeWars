@@ -47,22 +47,22 @@ const getRankedPokerHand = (cards) => {
 	return Rank.highCard;
 }
 
-const compareMultiplesResult = (myHand, compareHand) => {
+const compareMultiplesResult = (hand, compareHand) => {
 	let groupSize;
-	if (myHand._rank === Rank.pair) groupSize = 2;
-	if (myHand._rank === Rank.threeOfAKind) groupSize = 3;
-	if (myHand._rank === Rank.fourOfAKind) groupSize = 4;
+	if (hand._rank === Rank.pair) groupSize = 2;
+	if (hand._rank === Rank.threeOfAKind) groupSize = 3;
+	if (hand._rank === Rank.fourOfAKind) groupSize = 4;
 
-	const pair = getGroupedCards(myHand._cards, groupSize)[0];
+	const pair = getGroupedCards(hand._cards, groupSize)[0];
 	const compairPair = getGroupedCards(compareHand._cards, groupSize)[0];
 	
 	if (pair > compairPair) return Result.win;
 	if (pair < compairPair) return Result.loss;
 };
 
-const compareHighCardResult = (myHand, compareHand) => {
+const compareHighCardResult = (hand, compareHand) => {
 
-	const mySortedCardValues = getSortedCardValues(myHand._cards, true);
+	const mySortedCardValues = getSortedCardValues(hand._cards, true);
 	const compareSortedCardValues = getSortedCardValues(compareHand._cards, true);
 
 	for (let i = 0; i < mySortedCardValues.length; i++) {
@@ -75,7 +75,7 @@ const compareHighCardResult = (myHand, compareHand) => {
 	return Result.tie;
 }
 
-const comparingPairs = (myHand, compareHand) => myHand._rank === Rank.pair && compareHand._rank === Rank.pair;
+const comparingPairs = (hand, compareHand) => hand._rank === Rank.pair && compareHand._rank === Rank.pair;
 
 const isStraightFlush = (cards) => isStraight(cards) && isFlush(cards);
 
