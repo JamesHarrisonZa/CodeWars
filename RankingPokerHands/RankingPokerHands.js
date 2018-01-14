@@ -17,65 +17,60 @@ const Rank = {
 }
 
 class PokerHand {
-	/**
-	 * @param {string} cards 
-	 */
 	constructor(cards) {
 		this._cards = cards;
 		this._rank = getRankedPokerHand(cards);
 	};
 
-	compareWith(compareHand){
+	compareWith(compareHand) {
 		if (this._rank > compareHand._rank)
 			return Result.win;
 		if (this._rank < compareHand._rank)
 			return Result.loss;
+
+		const multiplesResult = compareMultiplesResult(this, compareHand);
+		if (multiplesResult !== undefined) return multiplesResult;
+		
 		return compareHighCardResult(this, compareHand);
 	}
 }
 
 const getRankedPokerHand = (cards) => {
-	if (isStraightFlush(cards))
-		return Rank.straightFlush;
-
-	if (isFourOfAKind(cards))
-		return Rank.fourOfAKind;
-
-	if (isFullHouse(cards))
-		return Rank.fullHouse;
-
-	if (isFlush(cards))
-		return Rank.flush;
-
-	if (isStraight(cards))
-		return Rank.straight;
-
-	if (isThreeOfAKind(cards))
-		return Rank.threeOfAKind;
-
-	if (isTwoPair(cards))
-		return Rank.twoPair;
-
-	if (isPair(cards))
-		return Rank.pair;
-
+	if (isStraightFlush(cards))	return Rank.straightFlush;
+	if (isFourOfAKind(cards)) return Rank.fourOfAKind;
+	if (isFullHouse(cards))	return Rank.fullHouse;
+	if (isFlush(cards)) return Rank.flush;
+	if (isStraight(cards)) return Rank.straight;
+	if (isThreeOfAKind(cards)) return Rank.threeOfAKind;
+	if (isTwoPair(cards)) return Rank.twoPair;
+	if (isPair(cards)) return Rank.pair;
 	return Rank.highCard;
 }
 
- const compareHighCardResult = (myHand, compareHand) => {
+const compareMultiplesResult = (myHand, compareHand) => {
+	let groupSize;
+	if (myHand._rank === Rank.pair) groupSize = 2;
+	if (myHand._rank === Rank.threeOfAKind) groupSize = 3;
+	if (myHand._rank === Rank.fourOfAKind) groupSize = 4;
 
-	const mySortedCardValues = getSortedCardValues(myHand._cards);
-	const compareSortedCardValues = getSortedCardValues(compareHand._cards);
+	const pair = getGroupedCards(myHand._cards, groupSize)[0];
+	const compairPair = getGroupedCards(compareHand._cards, groupSize)[0];
+	
+	if (pair > compairPair) return Result.win;
+	if (pair < compairPair) return Result.loss;
+};
+
+const compareHighCardResult = (myHand, compareHand) => {
+
+	const mySortedCardValues = getSortedCardValues(myHand._cards, true);
+	const compareSortedCardValues = getSortedCardValues(compareHand._cards, true);
 
 	for (let i = 0; i < mySortedCardValues.length; i++) {
 		const card = mySortedCardValues[i];
 		const compareCard = compareSortedCardValues[i];
 
-		if (card > compareCard)
-			return Result.win;
-
-		if (card < compareCard)
-			return Result.loss;
+		if (card > compareCard) return Result.win;
+		if (card < compareCard)	return Result.loss;
 	}
 	return Result.tie;
 }
@@ -124,7 +119,7 @@ const getCardValue = (card) => {
 
 const getCardValues = (cards) => cards.split(' ').map(card => getCardValue(card.substring(0,1)));
 
-const getSortedCardValues = (cards) => getCardValues(cards).sort((a,b) => a - b);
+const getSortedCardValues = (cards, descending) => descending ? getCardValues(cards).sort((a,b) => b - a) : getCardValues(cards).sort((a,b) => a - b);
 
 const getCardSuits = (cards) => cards.split(' ').map(card => card.substring(1));
 
@@ -132,208 +127,208 @@ const getCardSuits = (cards) => cards.split(' ').map(card => card.substring(1));
 // TESTS
 // --------------------------------------------------------------------------------------------------------------
 
-// ((desc) => {
+((desc) => {
 
-// 		var playerHand = new PokerHand('4S 5H 6H TS AC');
-// 		var opponentHand = new PokerHand('3S 5H 6H TS AC');
+		var playerHand = new PokerHand('4S 5H 6H TS AC');
+		var opponentHand = new PokerHand('3S 5H 6H TS AC');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// 	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Highest card wins');
+	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest card wins');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2H 3H 4H 5H 6H');
-// 	var opponentHand = new PokerHand('KS AS TS QS JS');
+	var playerHand = new PokerHand('2H 3H 4H 5H 6H');
+	var opponentHand = new PokerHand('KS AS TS QS JS');
 
-// const expected = Result.loss;
-// const actual = playerHand.compareWith(opponentHand);
+const expected = Result.loss;
+const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Highest straight flush wins');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest straight flush wins');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2H 3H 4H 5H 6H');
-// 	var opponentHand = new PokerHand('AS AD AC AH JD');
+	var playerHand = new PokerHand('2H 3H 4H 5H 6H');
+	var opponentHand = new PokerHand('AS AD AC AH JD');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Straight flush wins of 4 of a kind');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Straight flush wins of 4 of a kind');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('AS AH 2H AD AC');
-// 	var opponentHand = new PokerHand('JS JD JC JH 3D');
+	var playerHand = new PokerHand('AS AH 2H AD AC');
+	var opponentHand = new PokerHand('JS JD JC JH 3D');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Highest 4 of a kind wins');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest 4 of a kind wins');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S AH 2H AS AC');
-// 	var opponentHand = new PokerHand('JS JD JC JH AD');
+	var playerHand = new PokerHand('2S AH 2H AS AC');
+	var opponentHand = new PokerHand('JS JD JC JH AD');
 
-// 	const expected = Result.loss;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.loss;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('4 Of a kind wins of full house');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('4 Of a kind wins of full house');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S AH 2H AS AC');
-// 	var opponentHand = new PokerHand('2H 3H 5H 6H 7H');
+	var playerHand = new PokerHand('2S AH 2H AS AC');
+	var opponentHand = new PokerHand('2H 3H 5H 6H 7H');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Full house wins of flush');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Full house wins of flush');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('AS 3S 4S 8S 2S');
-// 	var opponentHand = new PokerHand('2H 3H 5H 6H 7H');
+	var playerHand = new PokerHand('AS 3S 4S 8S 2S');
+	var opponentHand = new PokerHand('2H 3H 5H 6H 7H');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Highest flush wins');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest flush wins');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2H 3H 5H 6H 7H');
-// 	var opponentHand = new PokerHand('2S 3H 4H 5S 6C');
+	var playerHand = new PokerHand('2H 3H 5H 6H 7H');
+	var opponentHand = new PokerHand('2S 3H 4H 5S 6C');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Flush wins of straight');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Flush wins of straight');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S 3H 4H 5S 6C');
-// 	var opponentHand = new PokerHand('3D 4C 5H 6H 2S');
+	var playerHand = new PokerHand('2S 3H 4H 5S 6C');
+	var opponentHand = new PokerHand('3D 4C 5H 6H 2S');
 
-// 	const expected = Result.tie;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.tie;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Equal straight is tie');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Equal straight is tie');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S 3H 4H 5S 6C');
-// 	var opponentHand = new PokerHand('AH AC 5H 6H AS');
+	var playerHand = new PokerHand('2S 3H 4H 5S 6C');
+	var opponentHand = new PokerHand('AH AC 5H 6H AS');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Straight wins of three of a kind');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Straight wins of three of a kind');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S 2H 4H 5S 4C');
-// 	var opponentHand = new PokerHand('AH AC 5H 6H AS');
+	var playerHand = new PokerHand('2S 2H 4H 5S 4C');
+	var opponentHand = new PokerHand('AH AC 5H 6H AS');
 
-// 	const expected = Result.loss;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.loss;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('3 Of a kind wins of two pair');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('3 Of a kind wins of two pair');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S 2H 4H 5S 4C');
-// 	var opponentHand = new PokerHand('AH AC 5H 6H 7S');
+	var playerHand = new PokerHand('2S 2H 4H 5S 4C');
+	var opponentHand = new PokerHand('AH AC 5H 6H 7S');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('2 Pair wins of pair');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('2 Pair wins of pair');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('6S AD 7H 4S AS');
-// 	var opponentHand = new PokerHand('AH AC 5H 6H 7S');
+	var playerHand = new PokerHand('6S AD 7H 4S AS');
+	var opponentHand = new PokerHand('AH AC 5H 6H 7S');
 
-// 	const expected = Result.loss;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.loss;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Highest pair wins');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest pair wins');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S AH 4H 5S KC');
-// 	var opponentHand = new PokerHand('AH AC 5H 6H 7S');
+	var playerHand = new PokerHand('2S AH 4H 5S KC');
+	var opponentHand = new PokerHand('AH AC 5H 6H 7S');
 
-// 	const expected = Result.loss;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.loss;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Pair wins of nothing');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Pair wins of nothing');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S 3H 6H 7S 9C');
-// 	var opponentHand = new PokerHand('7H 3C TH 6H 9S');
+	var playerHand = new PokerHand('2S 3H 6H 7S 9C');
+	var opponentHand = new PokerHand('7H 3C TH 6H 9S');
 
-// 	const expected = Result.loss;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.loss;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Highest card loses');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest card loses');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('4S 5H 6H TS AC');
-// 	var opponentHand = new PokerHand('3S 5H 6H TS AC');
+	var playerHand = new PokerHand('4S 5H 6H TS AC');
+	var opponentHand = new PokerHand('3S 5H 6H TS AC');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Highest card wins');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest card wins');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('2S AH 4H 5S 6C');
-// 	var opponentHand = new PokerHand('AD 4C 5H 6H 2C');
+	var playerHand = new PokerHand('2S AH 4H 5S 6C');
+	var opponentHand = new PokerHand('AD 4C 5H 6H 2C');
 
-// 	const expected = Result.tie;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.tie;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Equal cards is tie');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Equal cards is tie');
 
-// ((desc) => {
+((desc) => {
 
-// 	var playerHand = new PokerHand('JH 9H TH KH QH');
-// 	var opponentHand = new PokerHand('JC KH JS JD JH');
+	var playerHand = new PokerHand('JH 9H TH KH QH');
+	var opponentHand = new PokerHand('JC KH JS JD JH');
 
-// 	const expected = Result.win;
-// 	const actual = playerHand.compareWith(opponentHand);
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
 
-// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Straight flush vs four of a kind wins');
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Straight flush vs four of a kind wins');
 
 ((desc) => {
 
 	var playerHand = new PokerHand('KH KS 5S 4C 3H');
-	var opponentHand = new PokerHand('4S 4D AD 5S 4S');
+	var opponentHand = new PokerHand('4S 4D AD 5S 3S');
 
 	const expected = Result.win;
 	const actual = playerHand.compareWith(opponentHand);
@@ -354,7 +349,7 @@ console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${a
 
 ((desc) => {
 
-	var playerHand = new PokerHand('AS AH 2H AD AC');
+	var playerHand = new PokerHand('AS AH AD AC 2H');
 	var opponentHand = new PokerHand('JS JD JC JH 3D');
 
 	const expected = Result.win;
