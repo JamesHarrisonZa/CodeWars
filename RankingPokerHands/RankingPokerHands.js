@@ -34,8 +34,7 @@ class PokerHand {
 	}
 }
 
-const getRankedPokerHand = (cards) =>
-{
+const getRankedPokerHand = (cards) => {
 	if (isStraightFlush(cards))
 		return Rank.straightFlush;
 
@@ -108,8 +107,7 @@ const getGroupedCards = (cards, groupSize) => {
 	return uniqueCards;
 }
 
-const getCardValue = (card) =>
-{
+const getCardValue = (card) => {
 	if (card === 'T')
 		return 10;
 	if (card === 'J')
