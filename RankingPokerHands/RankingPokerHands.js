@@ -321,22 +321,55 @@ const getCardSuits = (cards) => cards.split(' ').map(card => card.substring(1));
 
 // ((desc) => {
 
-// 	var playerHand = new PokerHand('AH 8S AS KC JH');
-// 	var opponentHand = new PokerHand('KS 8D 4D 9S 4S');
+// 	var playerHand = new PokerHand('JH 9H TH KH QH');
+// 	var opponentHand = new PokerHand('JC KH JS JD JH');
 
 // 	const expected = Result.win;
 // 	const actual = playerHand.compareWith(opponentHand);
 
 // console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Pair Aces vs Pair fours wins');
+// })('Straight flush vs four of a kind wins');
 
 ((desc) => {
 
-	var playerHand = new PokerHand('JH 9H TH KH QH');
-	var opponentHand = new PokerHand('JC KH JS JD JH');
+	var playerHand = new PokerHand('KH KS 5S 4C 3H');
+	var opponentHand = new PokerHand('4S 4D AD 5S 4S');
 
 	const expected = Result.win;
 	const actual = playerHand.compareWith(opponentHand);
 
 console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('Straight flush vs four of a kind wins');
+})('Highest pair wins');
+
+((desc) => {
+
+	var playerHand = new PokerHand('KH KS KD 4C 3H');
+	var opponentHand = new PokerHand('2H 2S 2D AS 3S');
+
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
+
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest three of a kind wins');
+
+((desc) => {
+
+	var playerHand = new PokerHand('AS AH 2H AD AC');
+	var opponentHand = new PokerHand('JS JD JC JH 3D');
+
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
+
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest four of a kind wins');
+
+((desc) => {
+
+	var playerHand = new PokerHand('AS 3S 4S 8S 2S');
+	var opponentHand = new PokerHand('2H 3H 5H 6H 7H');
+
+	const expected = Result.win;
+	const actual = playerHand.compareWith(opponentHand);
+
+console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Highest flush wins');
