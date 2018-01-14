@@ -124,7 +124,7 @@ const getCardValue = (card) => {
 
 const getCardValues = (cards) => cards.split(' ').map(card => getCardValue(card.substring(0,1)));
 
-const getSortedCardValues = (cards) => getCardValues(cards).sort();
+const getSortedCardValues = (cards) => getCardValues(cards).sort((a,b) => a - b);
 
 const getCardSuits = (cards) => cards.split(' ').map(card => card.substring(1));
 
@@ -319,17 +319,16 @@ const getCardSuits = (cards) => cards.split(' ').map(card => card.substring(1));
 // console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
 // })('Equal cards is tie');
 
-((desc) => {
+// ((desc) => {
 
-	var playerHand = new PokerHand('AH 8S AS KC JH');
-	var opponentHand = new PokerHand('KS 8D 4D 9S 4S');
+// 	var playerHand = new PokerHand('AH 8S AS KC JH');
+// 	var opponentHand = new PokerHand('KS 8D 4D 9S 4S');
 
-	const expected = Result.win;
-	const actual = playerHand.compareWith(opponentHand);
+// 	const expected = Result.win;
+// 	const actual = playerHand.compareWith(opponentHand);
 
-console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('Pair Aces vs Pair fours wins');
-
+// console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+// })('Pair Aces vs Pair fours wins');
 
 ((desc) => {
 
