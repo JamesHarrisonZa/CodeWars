@@ -3,14 +3,15 @@
  */
 function nextBigger(n) {
 	const charArray = String(n).split('');
-	const lastDigit = charArray[charArray.length-1];
-	
-	for (let i = charArray.length -2 ; i >= 0; i--) {
+
+	for (let i = charArray.length - 1; i >= 0; i--) {
+
+		const currentDigit = charArray[i];
+		const nextDigit = charArray[i - 1]
 		
-		const nextDigit = charArray[i];
-		if (nextDigit !== lastDigit){
-			charArray[i] = lastDigit;
-			charArray[charArray.length - 1] = nextDigit;
+		if (nextDigit !== currentDigit) {
+			charArray[i] = nextDigit;
+			charArray[i - 1] = currentDigit;
 			return Number(charArray.join(''));
 		}
 	}
@@ -50,9 +51,9 @@ function nextBigger(n) {
 })('nextBigger(414) === 441');
 
 
-// ((desc) => {
-// 	const expected = 414;
-// 	const actual = nextBigger(144);
+((desc) => {
+	const expected = 414;
+	const actual = nextBigger(144);
 
-// 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('nextBigger(144) === 414');
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('nextBigger(144) === 414'); //got 441
