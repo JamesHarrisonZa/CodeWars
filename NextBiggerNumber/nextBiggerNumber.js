@@ -56,4 +56,25 @@ function nextBigger(n) {
 	const actual = nextBigger(144);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('nextBigger(144) === 414'); //got 441
+})('nextBigger(144) === 414');
+
+((desc) => {
+	const expected = 1234567908;
+	const actual = nextBigger(1234567890);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('nextBigger(1234567890) === 1234567908'); //1234567809
+
+((desc) => {
+	const expected = -1;
+	const actual = nextBigger(9876543210);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('nextBigger(9876543210) === -1'); //9876543201
+
+((desc) => {
+	const expected = -1;
+	const actual = nextBigger(9999999999);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('nextBigger(9999999999) === -1'); //999999999
