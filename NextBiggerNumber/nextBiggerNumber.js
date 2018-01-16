@@ -2,20 +2,43 @@
  * @param {number} n 
  */
 function nextBigger(n) {
+
 	const charArray = String(n).split('');
+	const pivotIndex = getPivotIndex(charArray);
+	const substituteIndexForPivot = getSubstituteIndexForPivot(charArray, pivotIndex);
+	swapPivotWithSubstitute(charArray, pivotIndex, substituteIndexForPivot);
+	const rightSortedArray = charArray.slice(0, pivotIndex + 1).concat(charArray.slice(pivotIndex + 1).sort());
+	const nextBigger = Number(rightSortedArray.join(''));
+	
+	return nextBigger > n ? nextBigger: -1;
+}
 
-	for (let i = charArray.length - 1; i >= 0; i--) {
+const getPivotIndex = (array) => {
+	for (let i = array.length - 1; i >= 0; i--) {
 
-		const currentDigit = charArray[i];
-		const nextDigit = charArray[i - 1]
-		
-		if (!(nextDigit >= currentDigit || nextDigit === undefined)) {
-			charArray[i] = nextDigit;
-			charArray[i - 1] = currentDigit;
-			return Number(charArray.join(''));
+		const currentDigit = array[i];
+		const leftDigit = array[i - 1];
+
+		if (leftDigit < currentDigit) {
+			return i - 1;
 		}
 	}
-	return -1;
+};
+
+const getSubstituteIndexForPivot = (array, pivotIndex) => {
+
+	return array.slice(pivotIndex).reduce((currentSubstituteIndex, number, index) => {
+		if (number > array[pivotIndex]) { 
+			return pivotIndex + index;
+		}
+		else return currentSubstituteIndex;
+	});
+}
+
+const swapPivotWithSubstitute = (array, pivotIndex, substituteIndexForPivot) => {
+	const temp = array[pivotIndex];
+	array[pivotIndex] = array[substituteIndexForPivot];
+	array[substituteIndexForPivot] = temp;
 }
 
 // --------------------------------------------------------------------------------------------------------------
@@ -50,7 +73,6 @@ function nextBigger(n) {
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('nextBigger(414) === 441');
 
-
 ((desc) => {
 	const expected = 414;
 	const actual = nextBigger(144);
@@ -65,16 +87,23 @@ function nextBigger(n) {
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('nextBigger(9999999999) === -1');
 
-// ((desc) => {
-// 	const expected = 1234567908;
-// 	const actual = nextBigger(1234567890);
-
-// 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('nextBigger(1234567890) === 1234567908'); //1234567809
-
 ((desc) => {
 	const expected = -1;
 	const actual = nextBigger(9876543210);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('nextBigger(9876543210) === -1'); //9876543201
+})('nextBigger(9876543210) === -1');
+
+((desc) => {
+	const expected = 1234567908;
+	const actual = nextBigger(1234567890);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('nextBigger(1234567890) === 1234567908');
+
+((desc) => {
+	const expected = 21581961257;
+	const actual = nextBigger(21581957621);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('nextBigger(21581957621) === 21581961257');
