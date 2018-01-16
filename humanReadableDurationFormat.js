@@ -2,23 +2,23 @@
 
 function formatDuration(seconds) {
 
+	const numHours = Math.floor(seconds / 3600);
+	seconds = seconds - (numHours * 3600);
+
 	const numMinutes = Math.floor(seconds / 60);
-	const numSeconds = seconds - (60 * numMinutes);
+	seconds = seconds - (60 * numMinutes);
 	
 	const durations = [];
-	durations.push(getMinuteText(numMinutes));
-	durations.push(getSeconds(numSeconds));
-		
+	durations.push(getText(numHours, 'hour'));
+	durations.push(getText(numMinutes, 'minute'));
+	durations.push(getText(seconds, 'second'));
+
 	return durations.filter(x => x).join(' and ');
 }
 
-const getMinuteText = (numMinutes) => {
-	if (numMinutes)	return numMinutes === 1 ? `1 minute` : `${numMinutes} minutes`;
+const getText = (num, text) => {
+	if (num) return num === 1 ? `1 ${text}` : `${num} ${text}s`;
 }
-
-const getSeconds = (numSeconds) => {
-	if (numSeconds)	return numSeconds === 1 ? `1 second` : `${numSeconds} seconds`;
-} 
 
 // --------------------------------------------------------------------------------------------------------------
 // TESTS
@@ -48,21 +48,21 @@ const getSeconds = (numSeconds) => {
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('1 minute and 2 seconds');
 
-// ((desc) => {
+((desc) => {
 
-// 	const expected = '2 minutes';
-// 	const actual = formatDuration(120);
+	const expected = '2 minutes';
+	const actual = formatDuration(120);
 
-// 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('2 minutes');
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('2 minutes');
 
-// ((desc) => {
+((desc) => {
 
-// 	const expected = '1 hour';
-// 	const actual = formatDuration(3600);
+	const expected = '1 hour';
+	const actual = formatDuration(3600);
 
-// 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('1 hour');
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('1 hour');
 
 // ((desc) => {
 
