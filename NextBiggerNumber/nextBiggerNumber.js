@@ -18,19 +18,14 @@ const getPivotIndex = (array) => {
 
 		const currentDigit = array[i];
 		const leftDigit = array[i - 1];
-
-		if (leftDigit < currentDigit) {
-			return i - 1;
-		}
+		if (leftDigit < currentDigit) return i - 1;
 	}
 };
 
 const getSubstituteIndexForPivot = (array, pivotIndex) => {
 
 	return array.slice(pivotIndex).reduce((currentSubstituteIndex, number, index) => {
-		if (number > array[pivotIndex]) { 
-			return pivotIndex + index;
-		}
+		if (number > array[pivotIndex]) return pivotIndex + index;
 		else return currentSubstituteIndex;
 	});
 }
