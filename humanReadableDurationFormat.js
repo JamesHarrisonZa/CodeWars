@@ -4,9 +4,11 @@ function formatDuration(seconds) {
 
 	if (seconds === 0) return 'now';
 
-	//years
+	const numYears = Math.floor(seconds / (86400*365));
+	seconds = seconds - (numYears * 86400 * 365);
 
-	//days
+	const numDays = Math.floor(seconds / 86400);
+	seconds = seconds - (numDays * 86400);
 
 	const numHours = Math.floor(seconds / 3600);
 	seconds = seconds - (numHours * 3600);
@@ -15,6 +17,8 @@ function formatDuration(seconds) {
 	seconds = seconds - (60 * numMinutes);
 	
 	const durations = [];
+	durations.push(getText(numYears, 'year'));
+	durations.push(getText(numDays, 'day'));
 	durations.push(getText(numHours, 'hour'));
 	durations.push(getText(numMinutes, 'minute'));
 	durations.push(getText(seconds, 'second'));
