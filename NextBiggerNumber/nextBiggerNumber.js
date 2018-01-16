@@ -9,7 +9,7 @@ function nextBigger(n) {
 		const currentDigit = charArray[i];
 		const nextDigit = charArray[i - 1]
 		
-		if (!(nextDigit === currentDigit || nextDigit === undefined)) {
+		if (!(nextDigit >= currentDigit || nextDigit === undefined)) {
 			charArray[i] = nextDigit;
 			charArray[i - 1] = currentDigit;
 			return Number(charArray.join(''));
@@ -72,9 +72,9 @@ function nextBigger(n) {
 // 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
 // })('nextBigger(1234567890) === 1234567908'); //1234567809
 
-// ((desc) => {
-// 	const expected = -1;
-// 	const actual = nextBigger(9876543210);
+((desc) => {
+	const expected = -1;
+	const actual = nextBigger(9876543210);
 
-// 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('nextBigger(9876543210) === -1'); //9876543201
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('nextBigger(9876543210) === -1'); //9876543201
