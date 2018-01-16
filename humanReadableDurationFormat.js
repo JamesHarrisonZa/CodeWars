@@ -13,7 +13,11 @@ function formatDuration(seconds) {
 	durations.push(getText(numMinutes, 'minute'));
 	durations.push(getText(seconds, 'second'));
 
-	return durations.filter(x => x).join(' and ');
+	const nonZeroDurations = durations.filter(x => x);
+	if (nonZeroDurations.length >= 3){
+		return nonZeroDurations.slice(0, nonZeroDurations.length - 1).join(', ') + ' and ' + nonZeroDurations[nonZeroDurations.length -1];
+	}
+	return nonZeroDurations.join(' and ');
 }
 
 const getText = (num, text) => {
@@ -64,10 +68,10 @@ const getText = (num, text) => {
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('1 hour');
 
-// ((desc) => {
+((desc) => {
 
-// 	const expected = '1 hour, 1 minute and 2 seconds';
-// 	const actual = formatDuration(3662);
+	const expected = '1 hour, 1 minute and 2 seconds';
+	const actual = formatDuration(3662);
 
-// 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('1 hour, 1 minute and 2 seconds');
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('1 hour, 1 minute and 2 seconds');
