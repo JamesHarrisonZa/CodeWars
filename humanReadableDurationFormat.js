@@ -2,6 +2,12 @@
 
 function formatDuration(seconds) {
 
+	if (seconds === 0) return 'now';
+
+	//years
+
+	//days
+
 	const numHours = Math.floor(seconds / 3600);
 	seconds = seconds - (numHours * 3600);
 
@@ -30,11 +36,19 @@ const getText = (num, text) => {
 
 ((desc) => {
 
+	const expected = 'now';
+	const actual = formatDuration(0);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('now');
+
+((desc) => {
+
 	const expected = '1 second';
 	const actual = formatDuration(1);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('1 second');
+})('second');
 
 ((desc) => {
 
@@ -42,7 +56,7 @@ const getText = (num, text) => {
 	const actual = formatDuration(42);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('42 seconds');
+})('seconds');
 
 ((desc) => {
 
@@ -50,7 +64,7 @@ const getText = (num, text) => {
 	const actual = formatDuration(62);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('1 minute and 2 seconds');
+})('minute and seconds');
 
 ((desc) => {
 
@@ -58,7 +72,7 @@ const getText = (num, text) => {
 	const actual = formatDuration(120);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('2 minutes');
+})('minutes');
 
 ((desc) => {
 
@@ -66,7 +80,7 @@ const getText = (num, text) => {
 	const actual = formatDuration(3600);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('1 hour');
+})('hour');
 
 ((desc) => {
 
@@ -74,4 +88,20 @@ const getText = (num, text) => {
 	const actual = formatDuration(3662);
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
-})('1 hour, 1 minute and 2 seconds');
+})('hour, minute and seconds');
+
+((desc) => {
+
+	const expected = '182 days, 1 hour, 44 minutes and 40 seconds';
+	const actual = formatDuration(15731080);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('days');
+
+((desc) => {
+
+	const expected = '8 years, 12 days, 13 hours, 41 minutes and 1 second';
+	const actual = formatDuration(253374061);
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('years');
