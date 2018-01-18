@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/525fbff0594da0665c0003a3
+
 'use strict';
 
 /**
