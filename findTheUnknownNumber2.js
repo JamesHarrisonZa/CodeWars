@@ -1,3 +1,7 @@
+// https://www.codewars.com/kata/algorithm-fun-find-the-unknown-number-part-ii
+
+'use strict';
+
 function findUnknowNumber(a, b, c, x, y, z) {
 
 	let n = 1;
