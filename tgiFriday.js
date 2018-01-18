@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/tgi-friday/train/javascript
+
 'use strict';
 
 /**
