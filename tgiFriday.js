@@ -6,13 +6,11 @@
  * @param {number} initialYear
  * @param {number} endYear
  */
-function lastDayIsFriday(initialYear, endYear) {
+const lastDayIsFriday = (initialYear, endYear) => {
 
 	let fridayCount = 0;
-
-	if (!endYear) {
-		endYear = initialYear;
-	}
+	
+	if (!endYear) endYear = initialYear;
 
 	const isLastDayFriday = (year, month) => {
 		const lastDayOfMonth = new Date(year, month + 1, 0);
@@ -21,9 +19,7 @@ function lastDayIsFriday(initialYear, endYear) {
 
 	for (let year = initialYear; year <= endYear; year++) {
 		for (let month = 0; month < 12; month++) {
-			if (isLastDayFriday(year, month)) {
-				fridayCount++;
-			}
+			if (isLastDayFriday(year, month)) fridayCount++;
 		}
 	}
 	

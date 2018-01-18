@@ -7,7 +7,7 @@
  * @param {number} minOrders
  * @param {number} minPrice
  */
-function pizzaRewards(customers, minOrders, minPrice) {
+const pizzaRewards = (customers, minOrders, minPrice) => {
 
 	return Object.keys(customers)
 		.filter(key => {
@@ -23,14 +23,9 @@ function pizzaRewards(customers, minOrders, minPrice) {
 
 function areEqualArrays(arr1, arr2) {
 
-	if (arr1.length !== arr2.length) {
-		return false;
-	}
-
+	if (arr1.length !== arr2.length) return false;
 	for (let i = 0; i < arr1.length; i++) {
-		if (arr1[i] !== arr2[i]) {
-			return false;
-		}
+		if (arr1[i] !== arr2[i]) return false;
 	}
 	return true;
 }

@@ -5,7 +5,7 @@
 /**
  * @param {Array<int>} diceRolls
  */
-function score(diceRolls) {
+const score = (diceRolls) => {
 
 	let score = 0;
 	const diceRollCounter = new Array(7).fill(0).map((diceRoll, index) =>
@@ -19,16 +19,9 @@ function score(diceRolls) {
 			score += diceNumber === 1 ? 1000 : diceNumber * 100;
 			diceNumberRolls -= 3;
 		}
-
-		if (diceNumber === 1) {
-			score += 100 * diceNumberRolls;
-		}
-
-		if (diceNumber === 5) {
-			score += 50 * diceNumberRolls;
-		}
+		if (diceNumber === 1) score += 100 * diceNumberRolls;
+		if (diceNumber === 5) score += 50 * diceNumberRolls;
 	}
-
 	return score;
 }
 

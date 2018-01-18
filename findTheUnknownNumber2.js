@@ -1,8 +1,9 @@
 // https://www.codewars.com/kata/algorithm-fun-find-the-unknown-number-part-ii
+// NOTE: This question highlights the performance difference between loop iterations and comparisons. Comparisons are way more expensive
 
 'use strict';
 
-function findUnknowNumber(a, b, c, x, y, z) {
+const findUnknowNumber = (a, b, c, x, y, z) => {
 
 	let n = 1;
 	while (!(n % a === x && n % b === y && n % c === z)) {

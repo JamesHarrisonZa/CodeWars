@@ -25,10 +25,9 @@ class PokerHand {
 	};
 
 	compareWith(compareHand) {
-		if (this._rank > compareHand._rank)
-			return Result.win;
-		if (this._rank < compareHand._rank)
-			return Result.loss;
+
+		if (this._rank > compareHand._rank) return Result.win;
+		if (this._rank < compareHand._rank) return Result.loss;
 
 		const multiplesResult = compareMultiplesResult(this, compareHand);
 		if (multiplesResult !== undefined) return multiplesResult;

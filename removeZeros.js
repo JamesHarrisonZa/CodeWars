@@ -1,15 +1,17 @@
 // https://www.codewars.com/kata/52aae14aa7fd03d57400058f
 
+'use strict';
+
 /**
  * @param {Array<number>} array 
  */
-function removeZeros(array) {
+const removeZeros = (array) => {
 
 	const needsSwitching = (i) => (array[i] === 0 || array[i] === '0');
 
-	for (var i = array.length - 1; i >= 0; i--) {
+	for (let i = array.length - 1; i >= 0; i--) {
 		if (needsSwitching(i)) {
-			j = i;
+			let j = i;
 			while ((j + 1 < array.length) && !needsSwitching(j + 1)) {
 				const zeroNumberOrString = array[j];
 				array[j] = array[j + 1];

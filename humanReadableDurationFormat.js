@@ -1,6 +1,8 @@
 // https://www.codewars.com/kata/human-readable-duration-format
 
-function formatDuration(seconds) {
+'use strict'
+
+const formatDuration = (seconds) => {
 
 	if (seconds === 0) return 'now';
 

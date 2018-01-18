@@ -5,9 +5,7 @@
 /**
  * @param {Array<int>} x 
  */
-function maps(x) {
-	return x.map((item) => { return item + item; });
-}
+const maps = (x) => x.map((item) => item + item)
 
 // --------------------------------------------------------------------------------------------------------------
 // TESTS

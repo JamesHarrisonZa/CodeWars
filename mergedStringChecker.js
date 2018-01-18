@@ -7,7 +7,7 @@
  * @param {string} word1
  * @param {string} word2
  */
-function isMerge(wordToMerge, word1, word2) {
+const isMerge = (wordToMerge, word1, word2) => {
 
 	return !wordToMerge ? !(word1 || word2) :
 		(word1[0] === wordToMerge[0] && isMerge(wordToMerge.slice(1), word1.slice(1), word2)) ||

@@ -3,7 +3,7 @@
 /**
  * @param {number} n 
  */
-function nextBigger(n) {
+const nextBigger = (n) => {
 
 	const charArray = String(n).split('');
 	const pivotIndex = getPivotIndex(charArray);
