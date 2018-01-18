@@ -29,6 +29,13 @@ function deepCompare(obj1, obj2) {
 
 ((desc) => {
 	const expected = true;
+	const actual = deepCompare({ name: 'Joe' }, { name: 'James' });
+
+	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Different string property');
+
+((desc) => {
+	const expected = true;
 	const actual = deepCompare({ name: 'Joe', x: { y: 'a', z: 'b' } }, { name: 'Joe', x: { y: 'a', z: 'b' }});
 
 	console.log(`${actual === expected}. ${desc}. expected: ${expected}, actual: ${actual}`);
