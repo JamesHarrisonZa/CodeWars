@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/ranking-poker-hands/javascript
+
 const Result = { 
 	win: 0,
 	loss: 1,
