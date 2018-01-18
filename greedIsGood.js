@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/greed-is-good/javascript
+
 'use strict';
 
 /**
