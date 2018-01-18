@@ -5,9 +5,7 @@
 /**
  * @param {Array<Array<number>>} cells
  */
-function nextGen(cells) {
-
-	const getCell = (cells, row, col) => (cells[row] && cells[row][col]) ? 1 : 0;
+const nextGen = (cells) => {
 
 	return cells.map((row, r) => {
 		return row.map((isAlive, c) => {
@@ -21,6 +19,8 @@ function nextGen(cells) {
 		});
 	});
 }
+
+const getCell = (cells, row, col) => (cells[row] && cells[row][col]) ? 1 : 0;
 
 // --------------------------------------------------------------------------------------------------------------
 // TESTS
