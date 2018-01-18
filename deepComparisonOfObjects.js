@@ -4,7 +4,7 @@
  * @param {Object} obj1 
  * @param {Object} obj2 
  */
-function deepCompare(obj1, obj2) {
+const deepCompare = (obj1, obj2) => {
 
 	if (typeof obj1 !== 'object' || (obj1 === null || obj1 === undefined)) return obj1 === obj2;
 	if (Object.keys(obj1).length !== Object.keys(obj2).length) return false;

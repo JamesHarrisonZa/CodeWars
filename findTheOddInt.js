@@ -2,26 +2,20 @@
 
 'use strict';
 
-/** 
- * @param {Array<number>} arr 
- */
-function findOdd(arr) {
+/** @param {Array<number>} arr */
+const findOdd = (arr) => {
 	
 	let oddInt;
 	const groupedItems = new Map();
 
 	for (const item of arr) {
-		if (!groupedItems.has(item)){
-			groupedItems.set(item, 0);
-		}
+		if (!groupedItems.has(item)) groupedItems.set(item, 0);
 		const prevValue = groupedItems.get(item);
 		groupedItems.set(item, prevValue + 1);
 	}
 
 	groupedItems.forEach((value, key, map) => {
-		if (value % 2 !== 0){
-			oddInt = key;
-		}
+		if (value % 2 !== 0) oddInt = key;
 	});
 
 	return oddInt;

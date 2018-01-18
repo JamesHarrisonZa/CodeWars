@@ -10,7 +10,7 @@ const opposites = {
 /**
  * @param {Array} arr 
  */
-function dirReduc(arr) {
+const dirReduc = (arr) => {
 	
 	arr.map((d, i) => {
 		if (isNextToOpposite(arr, i)) {
