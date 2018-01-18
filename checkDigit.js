@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/check-digit-1/train/javascript
+
 'use strict';
 
 function checkDigit(number, index1, index2, digit){
