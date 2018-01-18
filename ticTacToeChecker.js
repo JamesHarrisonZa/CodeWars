@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/tic-tac-toe-checker
+
 /**
 * @param {Array<Array>} board
 */
