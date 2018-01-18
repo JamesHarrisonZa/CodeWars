@@ -1,3 +1,7 @@
+// https://www.codewars.com/kata/merged-string-checker/train/javascript
+
+'use strict';
+
 /**
  * @param {string} wordToMerge 
  * @param {string} word1
