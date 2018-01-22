@@ -33,16 +33,16 @@ const MORSE_CODE = {
 
 const decodeMorse = (morseCode) => {
 
-	const codedWords = morseCode.split("  ").filter(p => p.length > 0);
+	const codedWords = morseCode.split('  ').filter(p => p.length > 0);
 	const englishwords = codedWords.map(p => getEnglishWord(p));
-	return englishwords.join(" ");
+	return englishwords.join(' ');
 }
 
 const getEnglishWord = (codedWord) => {
 
-	const codedLeters = codedWord.split(" ").filter(p => p.length > 0);
+	const codedLeters = codedWord.split(' ').filter(p => p.length > 0);
 	const englishLetters = codedLeters.map(p => MORSE_CODE[p]);
-	return englishLetters.join("");
+	return englishLetters.join('');
 }
 
 const decodeBits = (input) => {
@@ -54,14 +54,14 @@ const decodeBits = (input) => {
 
 const getTruncatedInput = (input) => {
 
-	const truncatedInput = input.replace(/^0+|0+$/g, ""); //Removing leading and trailing zeros
+	const truncatedInput = input.replace(/^0+|0+$/g, ''); //Removing leading and trailing zeros
 	return truncatedInput;
 }
 
 const getSampleTimeUnitLength = (input) => {
 
-	const lineDowns = input.split("0").filter(p => p.includes("1")).sort();
-	const lineUps = input.split("1").filter(p => p.includes("0")).sort();
+	const lineDowns = input.split('0').filter(p => p.includes('1')).sort();
+	const lineUps = input.split('1').filter(p => p.includes('0')).sort();
 	const shortestLineDown = lineDowns[0] ? lineDowns[0].length : null;
 	const shortestLineUp = lineUps[0] ? lineUps[0].length : null;
 
@@ -72,27 +72,27 @@ const getSampleTimeUnitLength = (input) => {
 
 const getMorseCodeWords = (input, timeUnit) => {
 
-	const bitWordDelimiter = new String("0").repeat(timeUnit * 7);
+	const bitWordDelimiter = new String('0').repeat(timeUnit * 7);
 	const bitWords = input.split(bitWordDelimiter).filter(p => p.length > 0);
 
 	const morseCodeWords = bitWords.map(bitWord => {
 
-		const bitLetterDelimiter = new String("0").repeat(timeUnit * 3);
+		const bitLetterDelimiter = new String('0').repeat(timeUnit * 3);
 		const bitLetters = bitWord.split(bitLetterDelimiter).filter(p => p.length > 0);
 		return getMorseCodeLetters(bitLetters, timeUnit);
 	});
-	return morseCodeWords.join("   ");
+	return morseCodeWords.join('   ');
 }
 
 const getMorseCodeLetters = (bitLetters, timeUnit) => {
 
 	const morseCodeLetters = bitLetters.map(bitLetter => {
 
-		const encodedCharDelimiter = new String("0").repeat(timeUnit);
+		const encodedCharDelimiter = new String('0').repeat(timeUnit);
 		const encodedChars = bitLetter.split(encodedCharDelimiter).filter(p => p.length > 0);
 		return getMorseCodeLetter(encodedChars, timeUnit);
 	});
-	return morseCodeLetters.join(" ");
+	return morseCodeLetters.join(' ');
 }
 
 const getMorseCodeLetter = (encodedChars, timeUnit) => {
@@ -101,7 +101,7 @@ const getMorseCodeLetter = (encodedChars, timeUnit) => {
 		if (encodedChar.length % (3 * timeUnit) === 0) return '-';
 		return '.';
 	});
-	return morseCodeLetter.join("");
+	return morseCodeLetter.join('');
 }
 
 // --------------------------------------------------------------------------------------------------------------
