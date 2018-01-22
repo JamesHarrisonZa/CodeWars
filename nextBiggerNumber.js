@@ -5,11 +5,11 @@
  */
 const nextBigger = (n) => {
 
-	const charArray = String(n).split('');
+	const charArray = [...String(n)]
 	const pivotIndex = getPivotIndex(charArray);
 	const substituteIndexForPivot = getSubstituteIndexForPivot(charArray, pivotIndex);
 	swapPivotWithSubstitute(charArray, pivotIndex, substituteIndexForPivot);
-	const rightSortedArray = charArray.slice(0, pivotIndex + 1).concat(charArray.slice(pivotIndex + 1).sort());
+	const rightSortedArray = [...charArray.slice(0, pivotIndex + 1), ...charArray.slice(pivotIndex + 1).sort()];
 	const nextBigger = Number(rightSortedArray.join(''));
 	
 	return nextBigger > n ? nextBigger: -1;
