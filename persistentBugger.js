@@ -15,13 +15,7 @@ const persistence = (num) => {
 	return count;
 };
 
-/**
- * @param {number} num 
- */
-const multiplyDigits = (num) => {
-	const digits = String(num).split('')//.map(x => Number(x))
-	return digits.reduce((prev, curr) => prev * curr);
-};
+const multiplyDigits = (num) => String(num).split('').reduce((prev, curr) => prev * curr);
 
 // --------------------------------------------------------------------------------------------------------------
 // TESTS
