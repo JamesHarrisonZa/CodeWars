@@ -4,7 +4,7 @@
 
 function checkDigit(number, index1, index2, digit){
 
-	return Array.from(number.toString())
+	return [...String(number)]
 		.map(Number)
 		.slice(Math.min(index1, index2), Math.max(index1, index2) + 1)
 		.includes(digit);
