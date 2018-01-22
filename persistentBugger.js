@@ -1,8 +1,27 @@
 // https://www.codewars.com/kata/persistent-bugger/train/javascript
 
+/**
+ * @param {number} num 
+ */
 const persistence = (num) => {
-	//code me
-}
+	
+	let count = 0;
+	let result = num;	
+
+	while (String(result).length > 1) {
+		result = multiplyDigits(result);
+		count++;
+	}
+	return count;
+};
+
+/**
+ * @param {number} num 
+ */
+const multiplyDigits = (num) => {
+	const digits = String(num).split('')//.map(x => Number(x))
+	return digits.reduce((prev, curr) => prev * curr);
+};
 
 // --------------------------------------------------------------------------------------------------------------
 // TESTS
