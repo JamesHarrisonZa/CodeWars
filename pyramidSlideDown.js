@@ -6,13 +6,13 @@
 * @param {Array<Array<int>>} pyramid
 */
 const longestSlideDown = (pyramid) => {
-	for (let floor = pyramid.length - 1; floor > 0; floor--) //Moving bottom -> top
-	{
+	for (let floor = pyramid.length - 1; floor > 0; floor--) { //Moving bottom -> top
+	
 		const parentFloorItems = pyramid[floor - 1];
 		const currentFloorItems = pyramid[floor];
 
-		for (let i = 0; i < pyramid[floor].length - 1; i++) //Moving left -> right
-		{
+		for (let i = 0; i < pyramid[floor].length - 1; i++) { //Moving left -> right
+		
 			const itemOne = currentFloorItems[i];
 			const itemTwo = currentFloorItems[i + 1];
 			parentFloorItems[i] += Math.max(itemOne, itemTwo);
