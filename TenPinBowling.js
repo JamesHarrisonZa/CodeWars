@@ -35,7 +35,7 @@ const getTwoRollsInFrame = (rolls, firstInFrame) => Number(rolls[firstInFrame]) 
 
 const getNextRoll = (rolls, firstInFrame) => Number(rolls[firstInFrame + 2]);
 
-const getNextTwoRolls = (rolls, firstInFrame) => Number(rolls[firstInFrame + 1]) + Number(rolls[firstInFrame + 2]);
+const getNextTwoRolls = (rolls, firstInFrame) => isSpare(rolls, firstInFrame + 1) ? 10 : getTwoRollsInFrame(rolls, firstInFrame + 1);
 
 // --------------------------------------------------------------------------------------------------------------
 // TESTS
@@ -80,3 +80,11 @@ const getNextTwoRolls = (rolls, firstInFrame) => Number(rolls[firstInFrame + 1])
 
 	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Perfect game should score 300');
+
+((desc) => {
+
+	const expected = 150;
+	const actual = bowlingScore('5/ 4/ 3/ 2/ 1/ 0/ X 9/ 4/ 8/8');
+
+	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Game with lots of spares should score 150');
