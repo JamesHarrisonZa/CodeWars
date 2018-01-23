@@ -12,21 +12,30 @@ const bowlingScore = (game) => {
 	for (let frame = 0; frame < 10; frame++) {
 		
 		if (isSpare(rolls, firstInFrame)) {
-			score += 10 + getNextFramesFirstRoll(rolls, firstInFrame);
+			score += 10 + getNextRoll(rolls, firstInFrame);
+			firstInFrame += 2;
+		}
+		else if (isStrike(rolls, firstInFrame)) {
+			score += 10 + getNextTwoRolls(rolls, firstInFrame);
+			firstInFrame ++;
 		}
 		else {
 			score += getTwoRollsInFrame(rolls, firstInFrame);
+			firstInFrame += 2;
 		}
-		firstInFrame +=2;
 	}
 	return score;
 };
 
-const getTwoRollsInFrame = (rolls, firstInFrame) => Number(rolls[firstInFrame]) + Number(rolls[firstInFrame + 1]);
-
 const isSpare = (rolls, firstInFrame) => rolls[firstInFrame + 1] === '/';
 
-const getNextFramesFirstRoll = (rolls, firstInFrame) => Number(rolls[firstInFrame + 2]);
+const isStrike = (rolls, firstInFrame) => rolls[firstInFrame] === 'X';
+
+const getTwoRollsInFrame = (rolls, firstInFrame) => Number(rolls[firstInFrame]) + Number(rolls[firstInFrame + 1]);
+
+const getNextRoll = (rolls, firstInFrame) => Number(rolls[firstInFrame + 2]);
+
+const getNextTwoRolls = (rolls, firstInFrame) => Number(rolls[firstInFrame + 1]) + Number(rolls[firstInFrame + 2]);
 
 // --------------------------------------------------------------------------------------------------------------
 // TESTS
@@ -55,3 +64,19 @@ const getNextFramesFirstRoll = (rolls, firstInFrame) => Number(rolls[firstInFram
 
 	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Spare and 1 should score 12');
+
+((desc) => {
+
+	const expected = 14;
+	const actual = bowlingScore('X 11 00 00 00 00 00 00 00 00');
+
+	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Strike and two 1\'s should score 14');
+
+// ((desc) => {
+
+// 	const expected = 300;
+// 	const actual = bowlingScore('X X X X X X X X X XXX');
+
+// 	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+// })('Perfect game should score 300');
