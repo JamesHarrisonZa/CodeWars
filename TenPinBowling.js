@@ -5,7 +5,7 @@
  */
 const bowlingScore = (game) => {
 
-	const rolls = [...game.replace(/ /g, '')];
+	const rolls = [...game.replace(/ /g, '')].map(roll => roll === 'X' ? 10: roll);
 	let firstInFrame = 0;
 	let score = 0;
 
@@ -29,7 +29,7 @@ const bowlingScore = (game) => {
 
 const isSpare = (rolls, firstInFrame) => rolls[firstInFrame + 1] === '/';
 
-const isStrike = (rolls, firstInFrame) => rolls[firstInFrame] === 'X';
+const isStrike = (rolls, firstInFrame) => rolls[firstInFrame] === 10;
 
 const getTwoRollsInFrame = (rolls, firstInFrame) => Number(rolls[firstInFrame]) + Number(rolls[firstInFrame + 1]);
 
@@ -73,10 +73,10 @@ const getNextTwoRolls = (rolls, firstInFrame) => Number(rolls[firstInFrame + 1])
 	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
 })('Strike and two 1\'s should score 14');
 
-// ((desc) => {
+((desc) => {
 
-// 	const expected = 300;
-// 	const actual = bowlingScore('X X X X X X X X X XXX');
+	const expected = 300;
+	const actual = bowlingScore('X X X X X X X X X XXX');
 
-// 	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
-// })('Perfect game should score 300');
+	console.log(`${expected === actual}. ${desc}. expected: ${expected}, actual: ${actual}`);
+})('Perfect game should score 300');
