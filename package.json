@@ -1,0 +1,16 @@
+{
+	"name": "katas",
+	"version": "1.42.42",
+	"description": "",
+	"main": "",
+	"scripts": {
+		"test": "mocha --opts ./mocha.opts src/**/*spec.js",
+		"test-debug": "node --inspect-brk=42420 --nolazy node_modules/mocha/bin/_mocha --opts ./mocha.opts src/**/*.spec.js",
+		"test-watch": "mocha -w --opts ./mocha.opts src/**/*spec.js"
+	},
+	"author": "James Harrison",
+	"devDependencies": {},
+	"dependencies": {
+		"mocha": "^5.2.0"
+	}
+}
