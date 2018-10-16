@@ -1,7 +1,7 @@
 # CodeWars
-A place where practice my problem solving. 
+A place where practice my problem solving using JavaScript.  
   
-This project focuses on solving problems found on CodeWars using JavaScript.
+Some problems are from CodeWars. 
 
 * [CodeWars](https://www.codewars.com)  
 * [My CodeWars profile](https://www.codewars.com/users/JamesHarrisonZa)
