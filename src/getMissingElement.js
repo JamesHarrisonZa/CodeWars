@@ -1,15 +1,20 @@
 //https://www.codewars.com/kata/return-the-missing-element/train/javascript
 
-function getMissingElement(superImportantArray){
+function getMissingElement(superImportantArray) {
 
 	// (O)2n Solution ? 
-	const numbersSet = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+	// const numbersHashMap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((hashMap, number) => {
+	// 	hashMap[number] = number;
+	// 	return hashMap;
+	// }, {});
+	const numbersHashMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 };
+
 	superImportantArray.forEach(number => {
-		numbersSet.delete(number); //Confirm this is (O)1
+		delete numbersHashMap[number];
 	});
-	numbersSet.keys().next().value
-	var filteredArray = Array.from(numbersSet);
-	return filteredArray[0];
+	const filteredArray = Object.keys(numbersHashMap); // (O)2n + 1?
+	return filteredArray[0]/1; //Weird I have to convert from string to number here?
 }
 
 // --------------------------------------------------------------------------------------------------------------
