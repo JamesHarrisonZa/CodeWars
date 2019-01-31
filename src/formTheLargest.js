@@ -4,10 +4,10 @@ https://www.codewars.com/kata/form-the-largest/train/javascript
 
 function formTheLargest(number){
 	
-	const numberArray = [...new String(number)]
-		.map(x => new Number(x));
-	const sortedArray = numberArray.sort((a, b) => b-a);
-	return new Number(sortedArray.join(''));
+	return [...new String(number)]
+		.map(x => new Number(x))
+		.sort((a, b) => b - a)
+		.join('');
 };
 
 module.exports = formTheLargest;
