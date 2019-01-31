@@ -3,7 +3,7 @@
 const assert = require('assert');
 const formTheLargest = require('./formTheLargest');
 
-describe.only('formTheLargest', () => {
+describe('formTheLargest', () => {
 
 	describe('Given 213', () => {
 		it('should return 321', () => {
