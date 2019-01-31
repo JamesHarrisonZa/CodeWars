@@ -3,7 +3,7 @@
 const assert = require('assert');
 const inArray = require('./whichAreIn');
 
-describe.only('inArray', () => {
+describe('inArray', () => {
 
 	describe('given wordsToCheck: ["lively", "alive", "harp", "sharp", "armstrong"]', () => {
 	
