@@ -3,7 +3,7 @@
 const assert = require('assert');
 const getIssuer = require('./creditCardChecker');
 
-describe.only('Given card number', () => {
+describe('Given card number', () => {
 
 	describe('that starts with', () => {
 
