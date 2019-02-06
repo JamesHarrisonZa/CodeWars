@@ -1,7 +1,7 @@
 const assert = require('assert');
 const deepCount = require('./arrayDeepCount');
 
-describe.only('deepCount', () => {
+describe('deepCount', () => {
 
 	describe('given []', () => {
 
@@ -47,6 +47,4 @@ describe.only('deepCount', () => {
 			assert.equal(actual, expected);
 		});
 	});
-
-
 });
