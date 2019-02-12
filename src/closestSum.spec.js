@@ -1,7 +1,7 @@
 const assert = require('assert');
 const closestSum = require('./closestSum');
 
-describe.only('closestSum', () => {
+describe('closestSum', () => {
 
 	describe('given [-1, 2, 1, -4]', () => {
 	
@@ -38,4 +38,15 @@ describe.only('closestSum', () => {
 			assert.equal(actual, expected);
 		});
 	});
+
+	//This is an example on Codewars, but their seems to be a hidden requirement 
+	//they havent specified around what happens when 2 or more combinations result in the same ClosestSum
+	// describe('given [-1, 2, 1, -4]', () => {
+	
+	// 	it('should return 2', () => {
+	// 		const actual = closestSum([-1, 2, 1, -4], 1);
+	// 		const expected = 2; //Getting -4 
+	// 		assert.equal(actual, expected);
+	// 	});
+	// });
 });
