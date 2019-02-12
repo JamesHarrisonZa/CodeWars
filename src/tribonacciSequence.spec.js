@@ -1,7 +1,7 @@
 const assert = require('assert');
 const tribonacci = require('./tribonacciSequence');
 
-describe.only('tribonacci', () => {
+describe('tribonacci', () => {
 
 	describe('given n === 0', () => {
 	
