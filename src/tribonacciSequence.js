@@ -1,5 +1,4 @@
 
-
 function tribonacci(signature, n) {
 	
 	if(n === 0) {
