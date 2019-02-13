@@ -1,7 +1,16 @@
 const assert = require('assert');
 const { zero, one, two, three, four, five, six, seven, eight, nine, plus, minus, times, dividedBy } = require('./calculatingWithFunctions');
 
-describe.only('Calculating with functions', () => {
+describe('Calculating with functions', () => {
+
+	describe('one(plus(one()))', () => {
+	
+		it('should return 2', () => {
+			const actual = one(plus(one()));
+			const expected = 2;
+			assert.equal(actual, expected);
+		});
+	});
 
 	describe('seven(times(five()))', () => {
 	
@@ -12,7 +21,7 @@ describe.only('Calculating with functions', () => {
 		});
 	});
 
-	describe.skip('four(plus(nine()))', () => {
+	describe('four(plus(nine()))', () => {
 
 		it('should return 13', () => {
 			const actual = four(plus(nine()));
@@ -21,7 +30,7 @@ describe.only('Calculating with functions', () => {
 		});
 	});
 
-	describe.skip('eight(minus(three()))', () => {
+	describe('eight(minus(three()))', () => {
 
 		it('should return 5', () => {
 			const actual = eight(minus(three()));
@@ -30,11 +39,20 @@ describe.only('Calculating with functions', () => {
 		});
 	});
 
-	describe.skip('six(dividedBy(two()))', () => {
+	describe('six(dividedBy(two()))', () => {
 
 		it('should return 3', () => {
 			const actual = six(dividedBy(two()));
 			const expected = 3;
+			assert.equal(actual, expected);
+		});
+	});
+
+	describe('eight(dividedBy(seven()))', () => {
+
+		it('should return 1', () => {
+			const actual = eight(dividedBy(seven()));
+			const expected = 1;
 			assert.equal(actual, expected);
 		});
 	});
