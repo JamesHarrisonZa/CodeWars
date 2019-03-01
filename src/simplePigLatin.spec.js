@@ -1,13 +1,31 @@
 const assert = require('assert');
 const pigIt = require('./simplePigLatin');
 
-describe.only('pigIt', () => {
+describe('pigIt', () => {
 
 	describe('given word', () => {
 
 		it('should return ordway', () => {
 			const actual = pigIt('word');
 			const expected = 'ordway';
+			assert.equal(actual, expected);
+		});
+	});
+
+	describe('given word !', () => {
+
+		it('should return ordway !', () => {
+			const actual = pigIt('word !');
+			const expected = 'ordway !';
+			assert.equal(actual, expected);
+		});
+	});
+
+	describe('given word ?', () => {
+
+		it('should return ordway ?', () => {
+			const actual = pigIt('word ?');
+			const expected = 'ordway ?';
 			assert.equal(actual, expected);
 		});
 	});
