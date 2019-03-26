@@ -1,7 +1,7 @@
 const assert = require('assert');
 const humanReadable  = require('./humanReadableTime');
 
-describe.only('humanReadable', () => {
+describe('humanReadable', () => {
 
 	describe('given 0 seconds', () => {
 	
