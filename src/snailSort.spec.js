@@ -1,7 +1,7 @@
 const assert = require('assert');
 const snail = require('./snailSort');
 
-describe.only('snailSort', () => {
+describe('snailSort', () => {
 
 	describe('given 2x2 array', () => {
 
@@ -32,19 +32,19 @@ describe.only('snailSort', () => {
 		});
 	});
 
-	// describe('given a 4x4 array', () => {
+	describe('given a 4x4 array', () => {
 
-	// 	const array = [
-	// 		[01, 02, 03, 04],
-	// 		[05, 06, 07, 08],
-	// 		[09, 10, 11, 12],
-	// 		[13, 14, 15, 16]
-	// 	];
+		const array = [
+			[01, 02, 03, 04],
+			[05, 06, 07, 08],
+			[09, 10, 11, 12],
+			[13, 14, 15, 16]
+		];
 
-	// 	it('should return ', () => {
-	// 		const actual = snail(array);
-	// 		const expected = [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10];
-	// 		assert.deepEqual(actual, expected);
-	// 	});
-	// });
+		it('should return ', () => {
+			const actual = snail(array);
+			const expected = [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10];
+			assert.deepEqual(actual, expected);
+		});
+	});
 });

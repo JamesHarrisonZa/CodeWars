@@ -10,33 +10,31 @@ function snail (array) {
 
 	for (let circle = 0; circle < demension - 1; circle++) {
 
-		console.log(`circle: ${circle}`)
+		//console.log(`circle: ${circle}`)
 
 		//rightTraversal
 		for (let leftIndex = circle; leftIndex < demension - circle; leftIndex++) {
 			sortedArray.push(array[circle][leftIndex]);
 		}
-		console.log(`After rightTraversal,  sortedArray: ${sortedArray}`);
+		//console.log(`After rightTraversal,  sortedArray: ${sortedArray}`);
 
 		//downTraversal
 		for (let downIndex = circle + 1; downIndex < demension - circle; downIndex++) {
-			sortedArray.push(array[downIndex][demension - 1]);
+			sortedArray.push(array[downIndex][demension - (1 + circle)]);
 		}
-		console.log(`After downTraversal,  sortedArray: ${sortedArray}`);
-
+		//console.log(`After downTraversal,   sortedArray: ${sortedArray}`);
 
 		//leftTraversal
-		for (let rightIndex = demension - 2 - circle; rightIndex >= circle; rightIndex--) { //< -- Adding 8 again for circle 2
-			//console.log(`${rightIndex}: rightIndex`);
-			sortedArray.push(array[demension - 1][rightIndex]);
+		for (let rightIndex = demension - 2 - circle; rightIndex >= circle; rightIndex--) {
+			sortedArray.push(array[demension - (1 + circle)][rightIndex]);
 		}
-		console.log(`After leftTraversal, sortedArray: ${sortedArray}`);
+		//console.log(`After leftTraversal,   sortedArray: ${sortedArray}`);
 
 		//upTraversal
-		for (let upIndex = demension - 1 - 1; upIndex >= circle + 1; upIndex--) {
-			sortedArray.push(array[upIndex][circle]);
+		for (let upIndex = demension - (1 + circle); upIndex > circle + 1; upIndex--) { // <-- Up traversal adding 13 and 10 a second time
+			sortedArray.push(array[upIndex - (1 + circle)][circle]);
 		}
-		console.log(`After upTraversal,    sortedArray: ${sortedArray}`);
+		//console.log(`After upTraversal,     sortedArray: ${sortedArray}`);
 	}
 	return sortedArray;
 }
