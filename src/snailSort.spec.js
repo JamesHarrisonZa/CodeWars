@@ -1,8 +1,18 @@
 const assert = require('assert');
 const snail = require('./snailSort');
 
-describe.only('snailSort', () => {
+describe('snailSort', () => {
 
+	describe('given empty array', () => {
+
+		const array = [[]];
+
+		it('should return []', () => {
+			const actual = snail(array);
+			const expected = [];
+			assert.deepEqual(actual, expected);
+		});
+	});
 
 	describe('given 1x1 array', () => {
 

@@ -7,8 +7,8 @@ function snail (array) {
 	
 	const demension = array.length;
 
-	if (demension === 1){
-		return [1];
+	if (demension === 1) {
+		return array[0];
 	}
 
 	const sortedArray = new Array();
