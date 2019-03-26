@@ -31,8 +31,8 @@ function snail (array) {
 		//console.log(`After leftTraversal,   sortedArray: ${sortedArray}`);
 
 		//upTraversal
-		for (let upIndex = demension - (1 + circle); upIndex > circle + 1; upIndex--) { // <-- Up traversal adding 13 and 10 a second time
-			sortedArray.push(array[upIndex - (1 + circle)][circle]);
+		for (let upIndex = demension - (2 + circle); upIndex >= circle + 1; upIndex--) { // <-- Adding 7 instead of 12, first index
+			sortedArray.push(array[upIndex][circle]);
 		}
 		//console.log(`After upTraversal,     sortedArray: ${sortedArray}`);
 	}

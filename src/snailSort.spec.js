@@ -47,4 +47,21 @@ describe('snailSort', () => {
 			assert.deepEqual(actual, expected);
 		});
 	});
+
+	describe('given a 5x5 array', () => {
+
+		const array = [
+			[01, 02, 03, 04, 05],
+			[06, 07, 08, 09, 10],
+			[11, 12, 13, 14, 15],
+			[16, 17, 18, 19, 20],
+			[20, 21, 22, 23, 24]
+		];
+
+		it('should return ', () => {
+			const actual = snail(array);
+			const expected = [1, 2, 3, 4, 5, 10, 15, 20, 24, 23, 22, 21, 20, 16, 11, 6, 7, 8, 9, 14, 19, 18, 17, 12, 13];
+			assert.deepEqual(actual, expected);
+		});
+	});
 });
