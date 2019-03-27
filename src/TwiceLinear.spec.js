@@ -1,7 +1,7 @@
 const assert = require('assert');
 const dblLinear = require('./TwiceLinear');
 
-describe.only('dblLinear', () => {
+describe('dblLinear', () => {
 
 	describe('given 10', () => {
 	
@@ -39,7 +39,7 @@ describe.only('dblLinear', () => {
 		});
 	});
 
-	describe.skip('given 100', () => {
+	describe('given 100', () => {
 
 		it('should return 447', () => {
 			const actual = dblLinear(100);
