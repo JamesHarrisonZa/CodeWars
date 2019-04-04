@@ -10,10 +10,10 @@ const _idealRow = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 function sudoku(grid) {
 
 	//Check horizontal rows
-	for (let i = 0; i < grid.length; i++) {
-		const missingOne = GetMissingOne(grid[i]); 
+	for (let r = 0; r < grid.length; r++) {
+		const missingOne = GetMissingOne(grid[r]); 
 		if (missingOne) {
-			grid[i][missingOne.index] = missingOne.value;
+			grid[r][missingOne.index] = missingOne.value;
 		}
 	}
 
@@ -30,6 +30,31 @@ function sudoku(grid) {
 			grid[missingOne.index][c] = missingOne.value;
 		}
 	}
+
+	//Check 3x3 squares
+	//TopLeftSquare
+	const topLeftIndexMapping = { 
+		0: [0,0], 
+		1: [0,1], 
+		2: [0,2], 
+		3: [1,0], 
+		4: [1,1], 
+		5: [1,2], 
+		6: [2,0], 
+		7: [2,1], 
+		8: [2,2]
+	};
+	const topLeftSquare = [grid[0][0], grid[0][1], grid[0][2], grid[1][0], grid[1][1], grid[1][2], grid[2][0], grid[2][1], grid[2][2]];
+	//console.log(`topLeftSquare: `, topLeftSquare);
+	const missingOne = GetMissingOne(topLeftSquare);
+	//console.log(`missingOne:`, missingOne);
+	if (missingOne) {
+		//console.log(`topLeftIndexMapping: `, topLeftIndexMapping);
+		const gridIndex = topLeftIndexMapping[missingOne.index];
+		//console.log(`gridIndex: ${gridIndex}`);
+		grid[gridIndex[0]][gridIndex[1]] = missingOne.value;
+	}
+
 	return grid;
 }
 

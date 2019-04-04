@@ -5,27 +5,18 @@ describe.only('sudokuSolver', () => {
 
 	describe('checking horizontaly', () => {
 	
-		describe('given grid with 1 row and 1 missing number', () => {
-
-			const puzzle = [[1, 2, 3, 4, 5, 6, 7, 8, 0]];
-
-			it('should return filled row', () => {
-				const actual = sudoku(puzzle);
-				const expected = [[1, 2, 3, 4, 5, 6, 7, 8, 9]];
-				assert.deepEqual(actual, expected);
-			});
-		});
-
-		describe('given grid with 2 rows and each with a missing number', () => {
+		describe('given grid with 3 rows and each with a missing number', () => {
 
 			const puzzle = [
 				[1, 2, 3, 4, 0, 6, 7, 8, 9],
 				[1, 0, 3, 4, 5, 6, 7, 8, 9],
+				[1, 2, 3, 4, 5, 6, 7, 0, 9],
 			];
 
 			it('should return filled rows', () => {
 				const actual = sudoku(puzzle);
 				const expected = [
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
 					[1, 2, 3, 4, 5, 6, 7, 8, 9],
 					[1, 2, 3, 4, 5, 6, 7, 8, 9]
 				];
@@ -36,37 +27,6 @@ describe.only('sudokuSolver', () => {
 
 	describe('checking vertically', () => {
 	
-		describe('given grid with 1 column and 1 missing number at the end', () => {
-
-			const puzzle = [
-				[1],
-				[2],
-				[3],
-				[4],
-				[5],
-				[6],
-				[7],
-				[8],
-				[0]
-			];
-
-			it('should fill the missing number', () => {
-				const actual = sudoku(puzzle);
-				const expected = [
-					[1],
-					[2],
-					[3],
-					[4],
-					[5],
-					[6],
-					[7],
-					[8],
-					[9]
-				];
-				assert.deepEqual(actual, expected);
-			});
-		});
-
 		describe('given grid with 9 rows and 1 missing number in the middle', () => {
 
 			const puzzle = [
@@ -125,6 +85,25 @@ describe.only('sudokuSolver', () => {
 				[7, 0, 9, 0, 0, 0, 0, 0, 0],
 				[8, 0, 1, 0, 0, 0, 0, 0, 0],
 				[9, 0, 2, 0, 0, 0, 0, 0, 0]
+			];
+			assert.deepEqual(actual, expected);
+		});
+	});
+
+	describe('checking a 3x3 square with one missing number', () => {
+	
+		const puzzle = [
+			[1, 2, 3],
+			[4, 5, 6],
+			[7, 8, 0],
+		];
+
+		it('should fill the missing number', () => {
+			const actual = sudoku(puzzle);
+			const expected = [
+				[1, 2, 3],
+				[4, 5, 6],
+				[7, 8, 9],
 			];
 			assert.deepEqual(actual, expected);
 		});
