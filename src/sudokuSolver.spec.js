@@ -99,6 +99,37 @@ describe.only('sudokuSolver', () => {
 		});
 	});
 
+	describe('checking multiple missing one in rows and columns', () => {
+	
+		const puzzle = [
+			[1,2,3,4,0,6,7,8,9],
+			[2,0,4,0,0,0,0,0,0],
+			[3,0,5,0,0,0,0,0,0],
+			[4,0,6,0,0,0,0,0,0],
+			[5,6,7,8,9,1,0,3,4],
+			[0,0,8,0,0,0,0,0,0],
+			[7,0,9,0,0,0,0,0,0],
+			[8,0,0,0,0,0,0,0,0],
+			[9,0,2,0,0,0,0,0,0]
+		];
+
+		it('should fill the rows and columns that are missing one number', () => {
+			const actual = sudoku(puzzle);
+			const expected = [
+				[1, 2, 3, 4, 5, 6, 7, 8, 9],
+				[2, 0, 4, 0, 0, 0, 0, 0, 0],
+				[3, 0, 5, 0, 0, 0, 0, 0, 0],
+				[4, 0, 6, 0, 0, 0, 0, 0, 0],
+				[5, 6, 7, 8, 9, 1, 2, 3, 4],
+				[6, 0, 8, 0, 0, 0, 0, 0, 0],
+				[7, 0, 9, 0, 0, 0, 0, 0, 0],
+				[8, 0, 1, 0, 0, 0, 0, 0, 0],
+				[9, 0, 2, 0, 0, 0, 0, 0, 0]
+			];
+			assert.deepEqual(actual, expected);
+		});
+	});
+
 	describe.skip('given puzzle', () => {
 	
 		const puzzle = [
@@ -126,7 +157,7 @@ describe.only('sudokuSolver', () => {
 				[2, 8, 7, 4, 1, 9, 6, 3, 5],
 				[3, 4, 5, 2, 8, 6, 1, 7, 9]
 			];
-			assert.equal(actual, expected);
+			assert.deepEqual(actual, expected);
 		});
 	});
 });
