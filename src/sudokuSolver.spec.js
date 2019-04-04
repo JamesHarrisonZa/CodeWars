@@ -34,8 +34,39 @@ describe.only('sudokuSolver', () => {
 		});
 	});
 
-	describe.skip('checking vertically', () => {
+	describe('checking vertically', () => {
 	
+		describe('given grid with 1 column and 1 missing number at the end', () => {
+
+			const puzzle = [
+				[1],
+				[2],
+				[3],
+				[4],
+				[5],
+				[6],
+				[7],
+				[8],
+				[0]
+			];
+
+			it('should fill the missing number', () => {
+				const actual = sudoku(puzzle);
+				const expected = [
+					[1],
+					[2],
+					[3],
+					[4],
+					[5],
+					[6],
+					[7],
+					[8],
+					[9]
+				];
+				assert.deepEqual(actual, expected);
+			});
+		});
+
 		describe('given grid with 9 rows and 1 missing number in the middle', () => {
 
 			const puzzle = [
@@ -50,7 +81,7 @@ describe.only('sudokuSolver', () => {
 				[1, 2, 3, 4, 5, 6, 7, 8, 9]
 			];
 
-			it('should toDo', () => {
+			it('should fill the missing number', () => {
 				const actual = sudoku(puzzle);
 				const expected = [
 					[1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -63,7 +94,7 @@ describe.only('sudokuSolver', () => {
 					[1, 2, 3, 4, 5, 6, 7, 8, 9],
 					[1, 2, 3, 4, 5, 6, 7, 8, 9]
 				];
-				assert.equal(actual, expected);
+				assert.deepEqual(actual, expected);
 			});
 		});
 	});
