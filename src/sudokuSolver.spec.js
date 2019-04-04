@@ -3,14 +3,68 @@ const sudoku = require('./sudokuSolver');
 
 describe.only('sudokuSolver', () => {
 
-	describe('given grid with 1 row and 1 missing number', () => {
+	describe('checking horizontaly', () => {
 	
-		const puzzle = [[1,2,3,4,5,6,7,8,0]];
+		describe('given grid with 1 row and 1 missing number', () => {
 
-		it('should return filled row', () => {
-			const actual = sudoku(puzzle);
-			const expected = [[1, 2, 3, 4, 5, 6, 7, 8, 9]];
-			assert.deepEqual(actual, expected);
+			const puzzle = [[1, 2, 3, 4, 5, 6, 7, 8, 0]];
+
+			it('should return filled row', () => {
+				const actual = sudoku(puzzle);
+				const expected = [[1, 2, 3, 4, 5, 6, 7, 8, 9]];
+				assert.deepEqual(actual, expected);
+			});
+		});
+
+		describe('given grid with 2 rows and each with a missing number', () => {
+
+			const puzzle = [
+				[1, 2, 3, 4, 0, 6, 7, 8, 9],
+				[1, 0, 3, 4, 5, 6, 7, 8, 9],
+			];
+
+			it('should return filled rows', () => {
+				const actual = sudoku(puzzle);
+				const expected = [
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9]
+				];
+				assert.deepEqual(actual, expected);
+			});
+		});
+	});
+
+	describe.skip('checking vertically', () => {
+	
+		describe('given grid with 9 rows and 1 missing number in the middle', () => {
+
+			const puzzle = [
+				[1, 2, 3, 4, 5, 6, 7, 8, 9],
+				[1, 2, 3, 4, 5, 6, 7, 8, 9],
+				[1, 2, 3, 4, 5, 6, 7, 8, 9],
+				[1, 2, 3, 4, 5, 6, 7, 8, 9],
+				[1, 2, 3, 4, 0, 6, 7, 8, 9],
+				[1, 2, 3, 4, 5, 6, 7, 8, 9],
+				[1, 2, 3, 4, 5, 6, 7, 8, 9],
+				[1, 2, 3, 4, 5, 6, 7, 8, 9],
+				[1, 2, 3, 4, 5, 6, 7, 8, 9]
+			];
+
+			it('should toDo', () => {
+				const actual = sudoku(puzzle);
+				const expected = [
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9],
+					[1, 2, 3, 4, 5, 6, 7, 8, 9]
+				];
+				assert.equal(actual, expected);
+			});
 		});
 	});
 
