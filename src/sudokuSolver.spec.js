@@ -93,9 +93,9 @@ describe.only('sudokuSolver', () => {
 	describe('checking a 3x3 square with one missing number', () => {
 	
 		const puzzle = [
-			[1, 2, 3],
+			[1, 2, 0],
 			[4, 5, 6],
-			[7, 8, 0],
+			[7, 8, 9],
 		];
 
 		it('should fill the missing number', () => {
@@ -109,8 +109,8 @@ describe.only('sudokuSolver', () => {
 		});
 	});
 
-	describe.skip('given puzzle', () => {
-	
+	describe.only('given puzzle', () => {
+
 		const puzzle = [
 			[5, 3, 0, 0, 7, 0, 0, 0, 0],
 			[6, 0, 0, 1, 9, 5, 0, 0, 0],
