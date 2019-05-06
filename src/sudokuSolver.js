@@ -1,5 +1,9 @@
 //https://www.codewars.com/kata/5296bc77afba8baa690002d7
 
+//ToDo: After implementing my first stab at the solution, I realised I was thinking about it the wrong way and need to start again. 
+//I might be able to reuse some of what I implemented already.
+//https://www.kristanix.com/sudokuepic/sudoku-rules.php
+
 'use strict'
 
 const _idealRow = [1, 2, 3, 4, 5, 6, 7, 8, 9];

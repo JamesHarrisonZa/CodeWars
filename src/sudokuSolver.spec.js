@@ -1,7 +1,7 @@
 const assert = require('assert');
 const sudoku = require('./sudokuSolver');
 
-describe.only('sudokuSolver', () => {
+describe.skip('sudokuSolver', () => {
 
 	describe('checking horizontaly', () => {
 	
@@ -109,7 +109,7 @@ describe.only('sudokuSolver', () => {
 		});
 	});
 
-	describe.only('given puzzle', () => {
+	describe('given puzzle', () => {
 
 		const puzzle = [
 			[5, 3, 0, 0, 7, 0, 0, 0, 0],
