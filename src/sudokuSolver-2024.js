@@ -2,18 +2,6 @@
 
 'use strict';
 
-var puzzle = [
-  [5, 3, 0, 0, 7, 0, 0, 0, 0],
-  [6, 0, 0, 1, 9, 5, 0, 0, 0],
-  [0, 9, 8, 0, 0, 0, 0, 6, 0],
-  [8, 0, 0, 0, 6, 0, 0, 0, 3],
-  [4, 0, 0, 8, 0, 3, 0, 0, 1],
-  [7, 0, 0, 0, 2, 0, 0, 0, 6],
-  [0, 6, 0, 0, 0, 0, 2, 8, 0],
-  [0, 0, 0, 4, 1, 9, 0, 0, 5],
-  [0, 0, 0, 0, 8, 0, 0, 7, 9],
-];
-
 const sudoku = (grid) => {
   if (solveSudoku(grid)) {
     printGrid(grid);
@@ -77,7 +65,14 @@ const findEmptyCell = (grid) => {
  * @returns {boolean} - True if the move is valid, false otherwise.
  */
 const isValidMove = (grid, row, col, num) => {
-  return !isUsedInRow(grid, row, num) && !isUsedInCol(grid, col, num); // && !isUsedInBox(grid, row, col, num)
+  const boxTopLeftRow = row - (row % 3);
+  const boxTopLeftCol = col - (col % 3);
+
+  return (
+    !isUsedInRow(grid, row, num) &&
+    !isUsedInCol(grid, col, num) &&
+    !isUsedInBox(grid, boxTopLeftRow, boxTopLeftCol, num)
+  );
 };
 
 /**
@@ -89,7 +84,9 @@ const isValidMove = (grid, row, col, num) => {
  */
 const isUsedInRow = (grid, row, num) => {
   for (let col = 0; col < 9; col++) {
-    if (grid[row][col] === num) {
+    const usedInRow = grid[row][col] === num;
+
+    if (usedInRow) {
       return true;
     }
   }
@@ -105,8 +102,31 @@ const isUsedInRow = (grid, row, num) => {
  */
 const isUsedInCol = (grid, col, num) => {
   for (let row = 0; row < 9; row++) {
-    if (grid[row][col] === num) {
+    const usedInCol = grid[row][col] === num;
+
+    if (usedInCol) {
       return true;
+    }
+  }
+  return false;
+};
+
+/**
+ * Checks if a number is already used in the 3x3 box containing the specified cell of a Sudoku grid.
+ * @param {Array<Array<number>>} grid - The Sudoku grid to check.
+ * @param {number} startRow - The starting row index of the box.
+ * @param {number} startCol - The starting column index of the box.
+ * @param {number} num - The number to check for.
+ * @returns {boolean} - True if the number is already used in the box, false otherwise.
+ */
+const isUsedInBox = (grid, startRow, startCol, num) => {
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 3; col++) {
+      const usedInBox = grid[startRow + row][startCol + col] === num;
+
+      if (usedInBox) {
+        return true;
+      }
     }
   }
   return false;
@@ -125,6 +145,18 @@ const printGrid = (grid) => {
     process.stdout.write('\n');
   }
 };
+
+var puzzle = [
+  [5, 3, 0, 0, 7, 0, 0, 0, 0],
+  [6, 0, 0, 1, 9, 5, 0, 0, 0],
+  [0, 9, 8, 0, 0, 0, 0, 6, 0],
+  [8, 0, 0, 0, 6, 0, 0, 0, 3],
+  [4, 0, 0, 8, 0, 3, 0, 0, 1],
+  [7, 0, 0, 0, 2, 0, 0, 0, 6],
+  [0, 6, 0, 0, 0, 0, 2, 8, 0],
+  [0, 0, 0, 4, 1, 9, 0, 0, 5],
+  [0, 0, 0, 0, 8, 0, 0, 7, 9],
+];
 
 sudoku(puzzle);
 
