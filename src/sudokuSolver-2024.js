@@ -14,18 +14,41 @@ var puzzle = [
   [0, 0, 0, 0, 8, 0, 0, 7, 9],
 ];
 
-const sudoku = (puzzle) => {
-  if (solveSudoku(puzzle)) {
-    printGrid();
-  } else {
-    console.log('No Solution exists 🤔');
-  }
+const sudoku = (grid) => {
+  //if (solveSudoku(grid)) {
+  printGrid(grid);
+  //} else {
+  //console.log('No Solution exists 🤔');
+  //}
 };
 
-const solveSudoku = (puzzle) => {
-  const emptyCell = findEmptyCell(puzzle);
+/**
+ * Solves a Sudoku puzzle represented by a 9x9 grid.
+ * @param {Array<Array<number>>} grid - The Sudoku grid to solve. Empty cells are represented by 0 values.
+ * @returns {boolean} - True if the Sudoku puzzle is solved successfully, false otherwise.
+ */
+const solveSudoku = (grid) => {
+  const emptyCell = findEmptyCell(grid);
 
-  console.log({ ...emptyCell });
+  if (!emptyCell) {
+    return true; // Puzzle Solved 🎉!
+  }
+
+  const row = emptyCell.row;
+  const col = emptyCell.col;
+
+  for (let num = 0; num < 9; num++) {
+    if (isValidMove(row, col, num)) {
+      grid[row][col] = num;
+
+      if (solveSudoku(grid)) {
+        return true; // Recurse
+      }
+
+      grid[row][col] = 0; // Backtrack
+    }
+  }
+  return false; // No valid number for this cell
 };
 
 /**
@@ -36,10 +59,26 @@ const solveSudoku = (puzzle) => {
 const findEmptyCell = (puzzle) => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
-      if (puzzle[row][col] === 0) {
+      const isEmptyCell = puzzle[row][col] === 0;
+
+      if (isEmptyCell) {
         return { row: row, col: col };
       }
     }
+  }
+};
+
+/**
+ * Prints the contents of a grid to the console.
+ * @param {Array<Array<number>>} grid - The grid to print.
+ * @returns {void}
+ */
+const printGrid = (grid) => {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      process.stdout.write(grid[row][col] + ' ');
+    }
+    process.stdout.write('\n');
   }
 };
 
