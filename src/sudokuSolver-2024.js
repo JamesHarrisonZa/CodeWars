@@ -77,7 +77,7 @@ const findEmptyCell = (grid) => {
  * @returns {boolean} - True if the move is valid, false otherwise.
  */
 const isValidMove = (grid, row, col, num) => {
-  return !isUsedInRow(grid, row, num); //&& !isUsedInCol(col, num)  && !isUsedInBox(row, col, num)
+  return !isUsedInRow(grid, row, num) && !isUsedInCol(grid, col, num); // && !isUsedInBox(grid, row, col, num)
 };
 
 /**
@@ -89,6 +89,22 @@ const isValidMove = (grid, row, col, num) => {
  */
 const isUsedInRow = (grid, row, num) => {
   for (let col = 0; col < 9; col++) {
+    if (grid[row][col] === num) {
+      return true;
+    }
+  }
+  return false;
+};
+
+/**
+ * Checks if a number is already used in a specific column of a Sudoku grid.
+ * @param {Array<Array<number>>} grid - The Sudoku grid to check.
+ * @param {number} col - The column index to check.
+ * @param {number} num - The number to check for.
+ * @returns {boolean} - True if the number is already used in the column, false otherwise.
+ */
+const isUsedInCol = (grid, col, num) => {
+  for (let row = 0; row < 9; row++) {
     if (grid[row][col] === num) {
       return true;
     }
