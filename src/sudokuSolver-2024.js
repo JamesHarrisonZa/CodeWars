@@ -15,11 +15,11 @@ var puzzle = [
 ];
 
 const sudoku = (grid) => {
-  //if (solveSudoku(grid)) {
-  printGrid(grid);
-  //} else {
-  //console.log('No Solution exists 🤔');
-  //}
+  if (solveSudoku(grid)) {
+    printGrid(grid);
+  } else {
+    console.log('No Solution exists 🤔');
+  }
 };
 
 /**
@@ -38,7 +38,7 @@ const solveSudoku = (grid) => {
   const col = emptyCell.col;
 
   for (let num = 0; num < 9; num++) {
-    if (isValidMove(row, col, num)) {
+    if (isValidMove(grid, row, col, num)) {
       grid[row][col] = num;
 
       if (solveSudoku(grid)) {
@@ -56,16 +56,44 @@ const solveSudoku = (grid) => {
  * @param {Array<Array<number>>} grid - The grid to search for empty cells.
  * @returns {{ row: number, col: number }} - The coordinates of the empty cell.
  */
-const findEmptyCell = (puzzle) => {
+const findEmptyCell = (grid) => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
-      const isEmptyCell = puzzle[row][col] === 0;
+      const isEmptyCell = grid[row][col] === 0;
 
       if (isEmptyCell) {
         return { row: row, col: col };
       }
     }
   }
+};
+
+/**
+ * Checks if placing a number in a specific cell of a Sudoku grid is a valid move.
+ * @param {Array<Array<number>>} grid - The Sudoku grid to solve. Empty cells are represented by 0 values.
+ * @param {number} row - The row index of the cell.
+ * @param {number} col - The column index of the cell.
+ * @param {number} num - The number to be placed in the cell.
+ * @returns {boolean} - True if the move is valid, false otherwise.
+ */
+const isValidMove = (grid, row, col, num) => {
+  return !isUsedInRow(grid, row, num); //&& !isUsedInCol(col, num)  && !isUsedInBox(row, col, num)
+};
+
+/**
+ * Checks if a number is already used in a specific row of a Sudoku grid.
+ * @param {Array<Array<number>>} grid - The Sudoku grid to solve. Empty cells are represented by 0 values.
+ * @param {number} row - The row index to check.
+ * @param {number} num - The number to check for.
+ * @returns {boolean} - True if the number is already used in the row, false otherwise.
+ */
+const isUsedInRow = (grid, row, num) => {
+  for (let col = 0; col < 9; col++) {
+    if (grid[row][col] === num) {
+      return true;
+    }
+  }
+  return false;
 };
 
 /**
