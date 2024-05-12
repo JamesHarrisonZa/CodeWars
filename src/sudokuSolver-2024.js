@@ -25,7 +25,7 @@ const solveSudoku = (grid) => {
   const row = emptyCell.row;
   const col = emptyCell.col;
 
-  for (let num = 0; num < 9; num++) {
+  for (let num = 0; num <= 9; num++) {
     if (isValidMove(grid, row, col, num)) {
       grid[row][col] = num;
 
